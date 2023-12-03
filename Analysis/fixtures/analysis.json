@@ -1,0 +1,42 @@
+[
+  {
+    "model": "Analysis.Analysis",
+    "pk": 1,
+    "fields": {
+      "name": "Glucose",
+      "symbol": "Dollar",
+      "min_normal": 1.5,
+      "max_normal": 25.5,
+      "unit": "m",
+      "parent": 1,
+      "content_type": "Analysis",
+      "translations": {
+        "English": "Glucose",
+        "عربي": "الجلوكوز",
+        "Française": "Glucose"
+      },
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Analysis.Analysis",
+    "pk": 2,
+    "fields": {
+      "name": "Cholestrol",
+      "symbol": "Dollar",
+      "min_normal": 1.5,
+      "max_normal": 25.5,
+      "unit": "m",
+      "parent": 1,
+      "content_type": "Analysis",
+      "translations": {
+        "English": "Cholestrol",
+        "عربي": "الكولسترول",
+        "Française": "Cholestérol"
+      },
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  }
+]

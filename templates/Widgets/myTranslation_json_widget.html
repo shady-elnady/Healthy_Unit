@@ -1,0 +1,174 @@
+{% load to_json %}
+{% load obj_if_none %}
+
+<style>
+  #translations-table {
+    width: 70%;
+    margin: 0 auto;
+    background: transparent;
+    text-decoration: none;
+    border: none;
+    margin: 0 auto;
+    box-shadow: none;
+  }
+
+  #translations-table th {
+    background-color: #ad1457;
+    color: #fff;
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+  }
+
+  #translations-table tbody td {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding-left: 8px;
+  }
+
+  #translations-table tbody td[contenteditable=true]:empty:not(:focus)::after {
+    content: "Enter Translation ...";
+    color: grey;
+    font-style: italic;
+  }
+
+  #translations-table td {
+    width: 10vmin;
+    border: solid 1px black;
+    text-align: center;
+  }
+
+  #translations-table tfoot td {
+    background: transparent;
+    text-decoration: none;
+    color: #E60E0E;
+    font-weight: bold;
+    text-align: left;
+    border: none;
+    margin: 5 auto;
+    box-shadow: none;
+  }
+
+  #translations-table tfoot td select {
+    width: 100%;
+    padding: 0px 10px;
+    margin: 0 auto;
+  }
+
+  #add_language_button {
+    background-color: #E60E0E;
+    color: #fff;
+    padding: 9px 15px;
+  }
+</style>
+
+<table id="translations-table" cellspacing="0" {% include "django/forms/widgets/attrs.html" %} >
+  <thead>
+    <tr>
+      <th>Language</th>
+      <th colspan="2">Translation</th>
+    </tr>
+  </thead>
+  <tbody id="translations_table_body" >
+    {% if widget.value != None %}
+      {% with json=widget.value|safe|to_json %}
+        {% for key ,value in json.items %}
+          <tr>
+            <td class="translation_language" dir="auto"
+              >{{ key }}</td>
+              <td
+                class="translation_result"
+                dir="auto"
+                name="{{ key }}"
+                id="{{ key }}"
+                contenteditable="true"
+                onkeyup="javascript:on_change_translate_result(this,event);"
+              >{{ value }}</td>
+            <td 
+              onclick="javascript:delete_translation_langauge_row(this, '{{ key }}')"
+              style="cursor: pointer;"
+            ><i class="material-icons" style="font-size:20px;color:red">delete</i>
+            </td>
+          </tr>
+        {% endfor %}
+      {% endwith %}          
+    {% else %}
+      <tr>
+        <td colspan="2">No Translations</td>
+      </tr>
+    {% endif %}
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="2">
+        <select autocomplete="true" id="languages_drop_menu_id">
+          {% for language in widget.languages %}
+            <option value="{{ language.native }}">
+              {{ language.native }}
+            </option>
+          {% endfor %}
+          
+        </select>
+      </td>
+      <td>
+        <input type="button" id="add_language_button" value="Add Language"
+          onclick="javascript:add_translation_langauge_row();"
+        />
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<textarea
+  id="{{widget.attrs.id}}"
+  name="{{ widget.name }}"
+  required=""
+  {% include "django/forms/widgets/attrs.html" %}
+  style="display: none"
+>{{ widget.value }}</textarea>
+
+<script language="javascript" >
+  var textarea = document.getElementById("{{widget.attrs.id}}");
+  var translations_table_body_element = document.getElementById('translations_table_body');
+    var translation_json = new Proxy( {{ widget.value|to_json|obj_if_none|safe }} , {
+    set: function(target, property, value) {
+      if( value == null || value == "") {
+        delete target[property];
+      } else {
+        target[property] = value;
+      }
+      textarea.value=JSON.stringify(target);
+      console.log(target);
+    }
+  });
+
+  function add_row_language (langauge, translate_result ) {
+    var translation_table_row = document.createElement('tr');
+    translation_table_row.className = 'translations_language_row';
+    translation_table_row.innerHTML =`<td class="translation_language" dir="auto" >${langauge}</td>
+      <td class="translation_result" dir="auto" name="${langauge}" id="${langauge}" contenteditable="true"
+        onkeyup="javascript:on_change_translate_result(this,event);" ></td>
+      <td style="cursor: pointer;" onclick="javascript:delete_translation_langauge_row(this, '${langauge}')">Delete</td>
+    `;
+    return translations_table_body_element.appendChild(translation_table_row);
+  }
+
+  function add_translation_langauge_row() {
+    var  new_language = document.querySelector('#languages_drop_menu_id option:checked').value;
+    if((new_language != null)&&(!translation_json.hasOwnProperty(new_language))) {
+      add_row_language(new_language);
+    } else {
+      alert(`Langauge ${new_language} is Exists`);
+    }
+  }
+
+  function delete_translation_langauge_row(tr_element, language) {
+    tr_element?.parentElement?.remove();
+    translation_json[language] = null;
+  }
+
+  function on_change_translate_result(element,event) {
+    translation_json[element.id] = element.textContent;
+  }
+
+</script

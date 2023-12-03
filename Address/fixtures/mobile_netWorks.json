@@ -1,0 +1,35 @@
+[
+  {
+    "model": "Address.MobileNetWorkCode",
+    "pk": 1,
+    "fields": {
+      "country": 1,
+      "mobile_netWork": 1,
+      "netWork_code": "010",
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Address.MobileNetWorkCode",
+    "pk": 2,
+    "fields": {
+      "country": 1,
+      "mobile_netWork": 2,
+      "netWork_code": "011",
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Address.MobileNetWorkCode",
+    "pk": 3,
+    "fields": {
+      "country": 1,
+      "mobile_netWork": 3,
+      "netWork_code": "012",
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  }
+]

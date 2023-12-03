@@ -1,0 +1,110 @@
+[
+  {
+    "model": "Service.ParentService",
+    "pk": 1,
+    "fields": {
+      "name": "Analysis",
+      "parent": null,
+      "managing_director": 1,
+      "image": "",
+      "content_type": "ParentService",
+      "translations": {
+        "English": "Analysis",
+        "عربي": "تحاليل طبيه",
+        "Française": "Analyse"
+      },
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Service.ParentService",
+    "pk": 2,
+    "fields": {
+      "name": "Radiology",
+      "parent": null,
+      "managing_director": 1,
+      "image": "",
+      "content_type": "ParentService",
+      "translations": {
+        "English": "Radiology",
+        "عربي": "الاشعه",
+        "Française": "Radiologie"
+      },
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Service.ParentService",
+    "pk": 3,
+    "fields": {
+      "name": "Vaccination",
+      "parent": null,
+      "managing_director": 1,
+      "image": "",
+      "content_type": "ParentService",
+      "translations": {
+        "English": "Vaccination",
+        "عربي": "التطعيمات",
+        "Française": "Vaccination"
+      },
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Service.ParentService",
+    "pk": 4,
+    "fields": {
+      "name": "Dental",
+      "parent": null,
+      "managing_director": 1,
+      "image": "",
+      "content_type": "ParentService",
+      "translations": {
+        "English": "Dental",
+        "عربي": "عياده الاسنان",
+        "Française": "Dentaire"
+      },
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Service.ParentService",
+    "pk": 5,
+    "fields": {
+      "name": "Ophthalmology",
+      "parent": null,
+      "managing_director": 1,
+      "image": "",
+      "content_type": "ParentService",
+      "translations": {
+        "English": "Ophthalmology",
+        "عربي": "عياده الرمد",
+        "Française": "Clinique d'Ophtalmologie"
+      },
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Service.ParentService",
+    "pk": 6,
+    "fields": {
+      "name": "Internal Medicine Clinic",
+      "parent": null,
+      "managing_director": 1,
+      "image": "",
+      "content_type": "ParentService",
+      "translations": {
+        "English": "Ophthalmology",
+        "عربي": "عياده الباطنيه",
+        "Française": "Clinique de médecine interne"
+      },
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  }
+]

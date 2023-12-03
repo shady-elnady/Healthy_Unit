@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Log in</title>
+  <link rel="stylesheet" href="{% static 'Log/log_in.css' %}">
+
+</head>
+<body>
+<div class="login-box">
+  <h2>Login</h2>
+  <form method="post" action="{% url 'User:LogIn' %}" autocomplete="off" id="form-id" >
+    {% csrf_token %}
+    <div class="user-box">
+      <input type="text" name="username"  autocomplete="off" required />
+      <label>Username</label>
+    </div>
+    <div class="user-box">
+      <input type="password" name="password" autocomplete="off" required />
+      <label>Password</label>
+    </div>   
+    
+    <a type="submit" onclick="click_log_in()">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      {% comment %} Log IN {% endcomment %}
+      <input type="submit" id="submit" value="Log In" style="display: block;left: 0;top: 0;background-color: transparent;border: none;color: inherit;" />
+    </a>    
+    
+    <a href="{% url 'User:Register' %}" class="Sign_up" style="font-size: small;text-transform: lowercase;" >Don’t have account? Sign up</a>
+
+    <input type="hidden" name="next" value="{{ next }}"/>
+  </form>
+</div>
+  <script>
+    const submit_btn = document.querySelector("#submit");
+    const form = document.getElementById("form-id");
+    window.addEventListener('load', function(){
+      form.value="";
+      form.reset();
+    })
+    function click_log_in() {
+      form.submit();
+      submit_btn.click();
+      console.log("shady");
+    }
+    submit_btn.addEventListener('click', (){
+      print("Submit Clicked");
+    })
+
+    
+  </script>
+  
+</body>
+</html>

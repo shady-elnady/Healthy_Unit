@@ -1,0 +1,10 @@
+[
+  {
+    "model": "Vaccination.Campaign",
+    "pk": "1",
+    "fields": {
+      "vaccination": 1,
+      "campaign_date": "2023-09-16T17:41:28+00:00"
+    }
+  }
+]

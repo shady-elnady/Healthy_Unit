@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css' %}">
+<link rel="stylesheet" href="{% static 'Log/log_up.css' %}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js' %}"></script>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="logo"> 
+  <h1><i> Cook Application</i></h1>
+</div> 
+<section class="stark-login">
+  
+  <form method="post" action="{% url 'User:Register' %}" autocomplete="off" id="form-id">
+    {% csrf_token %}	
+    <div id="fade-box">
+      <input type="text" name="username"  id="username" placeholder="Your User Name" autocomplete="off" required>
+      <input type="email" name="email"  id="email" placeholder="Your E-Mail" autocomplete="off" required>
+      <input type="text" name="mobile" placeholder="Mobile" autocomplete="off" required> 
+      <input type="password" name="password" placeholder="Password" autocomplete="off" required>
+
+      <div class="radio-box">
+        <label for="methodOtpSms">SMS:</label>
+        <input type="radio" name="methodOtp" id="methodOtpSms" value="methodOtpSms">
+
+        <label for="methodOtpWhatsapp">WhatsApp:</label>
+        <input type="radio" name="methodOtp" id="methodOtpWhatsapp" value="methodOtpWhatsapp">
+      </div>
+          
+      <input type="submit" id="submit" value="Sign Up" style="margin-top: 20px;">
+      <input type="hidden" name="next" value="{{ next }}" />
+    </div>
+      </form>
+      <div class="hexagons">
+        <span>&#x2B22;</span>
+        <span>&#x2B22;</span>
+        <span>&#x2B22;</span>
+        <span>&#x2B22;</span>
+        <span>&#x2B22;</span>
+        <span>&#x2B22;</span>
+        <span>&#x2B22;</span>
+        <span>&#x2B22;</span>
+        <span>&#x2B22;</span>
+        <span>&#x2B22;</span>
+        <span>&#x2B22;</span>
+        <span>&#x2B22;</span>
+        <br>
+          <span>&#x2B22;</span>
+          <span>&#x2B22;</span>
+          <span>&#x2B22;</span>
+          <span>&#x2B22;</span>
+          <span>&#x2B22;</span>
+          <span>&#x2B22;</span>
+          <span>&#x2B22;</span>
+          <span>&#x2B22;</span>
+          <span>&#x2B22;</span>
+          <span>&#x2B22;</span>
+          <span>&#x2B22;</span>
+          <br>
+            <span>&#x2B22;</span>
+            <span>&#x2B22;</span>
+            <span>&#x2B22;</span>
+            <span>&#x2B22;</span> 
+            <span>&#x2B22;</span>
+            <span>&#x2B22;</span>
+            <span>&#x2B22;</span>
+            <span>&#x2B22;</span>
+            <span>&#x2B22;</span>
+            <span>&#x2B22;</span>
+            <span>&#x2B22;</span>
+            <span>&#x2B22;</span>
+            
+            <br>
+              <span>&#x2B22;</span>
+              <span>&#x2B22;</span>
+              <span>&#x2B22;</span>
+              <span>&#x2B22;</span>
+              <span>&#x2B22;</span>
+              <span>&#x2B22;</span>
+              <span>&#x2B22;</span>
+              <span>&#x2B22;</span>
+              <span>&#x2B22;</span>
+              <span>&#x2B22;</span>
+              <span>&#x2B22;</span>
+              <br>
+                <span>&#x2B22;</span>
+                <span>&#x2B22;</span>
+                <span>&#x2B22;</span>
+                <span>&#x2B22;</span>
+                <span>&#x2B22;</span>
+                <span>&#x2B22;</span>
+                <span>&#x2B22;</span>
+                <span>&#x2B22;</span>
+                <span>&#x2B22;</span>
+                <span>&#x2B22;</span>
+                <span>&#x2B22;</span>
+                <span>&#x2B22;</span>
+              </div>      
+            </section> 
+            
+            <div id="circle1">
+              <div id="inner-cirlce1">
+                <h2> </h2>
+              </div>
+            </div>
+            
+            
+            
+            <ul>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+            
+  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script  src="{% static 'Log/log_up.js' %}"></script>
+  <script>
+    window.addEventListener('load', function(){
+      document.getElementById("form-id").value="";
+    })
+    
+  </script>
+
+</body>
+</html>

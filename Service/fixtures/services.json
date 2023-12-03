@@ -1,0 +1,18 @@
+[
+  {
+    "model": "Service.Service",
+    "pk": "1",
+    "fields": {
+      "name": "Dollar",
+      "parent": 1,
+      "content_type": "Service",
+      "translations": {
+        "English": "Dollar",
+        "عربي": "دولار",
+        "Française": "Dollar"
+      },
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  }
+]

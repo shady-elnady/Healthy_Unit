@@ -1,0 +1,160 @@
+[
+  {
+    "model": "Language.Language",
+    "pk": 1,
+    "fields": {
+      "name": "English",
+      "native": "English",
+      "iso_639_1": "en",
+      "iso_639_2T": "eng",
+      "is_bidi": false,
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Language.Language",
+    "pk": 2,
+    "fields": {
+      "name": "French",
+      "native": "Française",
+      "iso_639_1": "fr",
+      "iso_639_2T": "fra",
+      "is_bidi": false,
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Language.Language",
+    "pk": 3,
+    "fields": {
+      "name": "Arabic",
+      "native": "عربي",
+      "iso_639_1": "ar",
+      "iso_639_2T": "ara",
+      "is_bidi": true,
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Language.Language",
+    "pk": 4,
+    "fields": {
+      "name": "Malayalam",
+      "native": "മലയാളം",
+      "iso_639_1": "ml",
+      "iso_639_2T": "mla",
+      "is_bidi": false,
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+
+  {
+    "model": "Language.Language",
+    "pk": 5,
+    "fields": {
+      "name": "Chuvash",
+      "native": "чӑваш чӗлхи",
+      "iso_639_1": "cv",
+      "iso_639_2T": "chv",
+      "is_bidi": false,
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+
+  {
+    "model": "Language.Language",
+    "pk": 6,
+    "fields": {
+      "name": "German",
+      "native": "Deutsch",
+      "iso_639_1": "de",     
+      "iso_639_2T": "deu",      
+      "is_bidi": false,
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Language.Language",
+    "pk": 7,
+    "fields": {
+      "name": "Italian",
+      "native": "Italiano",
+      "iso_639_1": "it",
+      "iso_639_2T": "ita",
+      "is_bidi": false,
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Language.Language",
+    "pk": 8,
+    "fields": {
+      "name": "Kurdish",
+      "native": "Kurdî, کوردی",
+      "iso_639_1": "ku",
+      "iso_639_2T": "kur",
+      "is_bidi": true,
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Language.Language",
+    "pk": 9,
+    "fields": {
+      "name": "Japanese",
+      "native": "日本語 (にほんご)",
+      "iso_639_1": "ja",
+      "iso_639_2T": "jpn",
+      "is_bidi": false,
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Language.Language",
+    "pk": 10,
+    "fields": {
+      "name": "Russian",
+      "native": "русский",
+      "iso_639_1": "ru",
+      "iso_639_2T": "rus",
+      "is_bidi": false,
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Language.Language",
+    "pk": 11,
+    "fields": {
+      "name": "Spanish",
+      "native": "Española",
+      "iso_639_1": "es",
+      "iso_639_2T": "spa",  
+      "is_bidi": false,
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Language.Language",
+    "pk": 12,
+    "fields": {
+      "name": "Turkish",
+      "native": "Türkçe",
+      "iso_639_1": "tr",
+      "iso_639_2T": "tur",
+      "is_bidi": false,
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  }
+]

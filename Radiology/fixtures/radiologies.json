@@ -1,0 +1,18 @@
+[
+  {
+    "model": "Radiology.Radiology",
+    "pk": "1",
+    "fields": {
+      "name": "Dollar",
+      "parent": 2,
+      "content_type": "Radiology",
+      "translations": {
+        "English": "Dollar",
+        "عربي": "دولار",
+        "Française": "Dollar"
+      },
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  }
+]

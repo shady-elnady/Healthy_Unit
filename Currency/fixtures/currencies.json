@@ -1,0 +1,277 @@
+[
+  {
+    "model": "Currency.Currency",
+    "pk": "1",
+    "fields": {
+      "name": "Dollar",
+      "iso_code": "USD",
+      "symbol": "💲",
+      "translations": {
+        "English": "Dollar",
+        "عربي": "دولار",
+        "Française": "Dollar"
+      },
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Currency.Currency",
+    "pk": "2",
+    "fields": {
+      "name": "Rupee's India",
+      "iso_code": "INR",
+      "symbol": "₹",
+      "translations": {
+        "English": "Rupee's India",
+        "عربي": "روبيه",
+        "Française": "Roupies Inde"
+      },
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Currency.Currency",
+    "pk": "3",
+    "fields": {
+      "name": "Dollar's Taiwan",
+      "iso_code": "TWD",
+      "symbol": "🇹🇼",
+      "translations": {
+        "English": "Dollar's Taiwan",
+        "عربي": "دولار تايونى",
+        "Française": "Dollar de Taïwan",
+        "國語": "新臺幣[I]"
+      },
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Currency.Currency",
+    "pk": "4",
+    "fields": {
+      "name": "Euro",
+      "iso_code": "EUR",
+      "symbol": "💶 €",
+      "translations": {
+        "English": "Euro",
+        "عربي": "يورو",
+        "Française": "Euro"
+      },
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Currency.Currency",
+    "pk": "5",
+    "fields": {
+      "name": "Yen",
+      "iso_code": "JPY",
+      "symbol": "💴",
+      "translations": {
+        "English": "Yen",
+        "日本語 (にほんご)": "円",
+        "عربي": "ين",
+        "Française": "Yen"
+      },
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Currency.Currency",
+    "pk": "6",
+    "fields": {
+      "name": "Lira's Turkey",
+      "iso_code": "TRY",
+      "symbol": "₺",
+      "translations": {
+        "English": "Lira's Turkey",
+        "Türkçe": "Türk lirası",
+        "عربي": "ليرا تركيه",
+        "Française": "La Turquie de Lira"
+      },
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Currency.Currency",
+    "pk": "7",
+    "fields": {
+      "name": "Egyptian pound",
+      "iso_code": "EGP",
+      "symbol": "💷",
+      "translations": {
+        "English": "Egyptian pound",
+        "عربي": "جنيه مصرى",
+        "Française": "Livre égyptienne"
+      },
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Currency.Currency",
+    "pk": "8",
+    "fields": {
+      "name": "Dinar's Jordan",
+      "iso_code": "JOD",
+      "symbol": "JOD",
+      "translations": {
+        "English": "Dinar's Jordan",
+        "عربي": "دينار أردنى",
+        "Française": "La Jordanie de Dinar"
+      },
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Currency.Currency",
+    "pk": "9",
+    "fields": {
+      "name": "Dinar's Kuwait",
+      "iso_code": "KWD",
+      "symbol": "🇰🇼",
+      "translations": {
+        "English": "Dinar's Kuwait",
+        "عربي": "دينار كويتى",
+        "Française": "Dinar Koweït"
+      },
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Currency.Currency",
+    "pk": "10",
+    "fields": {
+      "name": "Dinar's Libya",
+      "iso_code": "LYD",
+      "symbol": "LD",
+      "translations": {
+        "English": "Dinar's Libya",
+        "عربي": "دينار ليبى",
+        "Française": "Dinar Libye"
+      },
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Currency.Currency",
+    "pk": "11",
+    "fields": {
+      "name": "Dinar's Tunisia",
+      "iso_code": "TND",
+      "symbol": "DT",
+      "translations": {
+        "English": "Dinar's Tunisia",
+        "عربي": "دينار تونسى",
+        "Française": "Dinars tunisiens"
+      },
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Currency.Currency",
+    "pk": "12",
+    "fields": {
+      "name": "Dinar's Iraq",
+      "iso_code": "IQD",
+      "symbol": "🇮🇶",
+      "translations": {
+        "English": "Dinar's Iraq",
+        "عربي": "دينار عراقى",
+        "Française": "Dinars Irak"
+      },
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Currency.Currency",
+    "pk": "13",
+    "fields": {
+      "name": "Riyal's Qatar",
+      "iso_code": "QAR",
+      "symbol": "🇶🇦",
+      "translations": {
+        "English": "Riyal's Qatar",
+        "عربي": "ريال قطرى",
+        "Française": "Riyals du Qatar"
+      },
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Currency.Currency",
+    "pk": "14",
+    "fields": {
+      "name": "Riyal's Saudi Arabia",
+      "iso_code": "SAR",
+      "symbol": "🇸🇦",
+      "translations": {
+        "English": "Riyal's Saudi Arabia",
+        "عربي": "ريال سعودى",
+        "Française": "Riyals Saoudiens"
+      },
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Currency.Currency",
+    "pk": "15",
+    "fields": {
+      "name": "Riyal's Oman",
+      "iso_code": "OMR",
+      "symbol": "🏳️‍🌈",
+      "translations": {
+        "English": "Riyal's Oman",
+        "عربي": "ريال عمانى",
+        "Française": "Riyals d'Oman"
+      },
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Currency.Currency",
+    "pk": "16",
+    "fields": {
+      "name": "Dirham",
+      "iso_code": "AED",
+      "symbol": "🇦🇪",
+      "translations": {
+        "English": "Dirham",
+        "عربي": "درهم إمارتى",
+        "Française": "Dirham"
+      },
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Currency.Currency",
+    "pk": "17",
+    "fields": {
+      "name": "French Franc",
+      "iso_code": "F",
+      "symbol": "₣",
+      "translations": {
+        "English": "French Franc",
+        "عربي": "فرانك",
+        "Française": "Franc"
+      },
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  }
+]

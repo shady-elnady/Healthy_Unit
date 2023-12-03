@@ -1,0 +1,62 @@
+[
+  {
+    "model": "Address.Country",
+    "pk": 1,
+    "fields": {
+      "name": "Egypt",
+      "continent": "AF",
+      "flag_emoji": "🇪🇬",
+      "currency": 7,
+      "language": 3,
+      "tel_code": "002",
+      "time_zones": "UTC+02:00",
+      "translations": {
+        "English": "Egypt",
+        "عربي": "مصر",
+        "Française": "Egypte"
+      },
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Address.Country",
+    "pk": 2,
+    "fields": {
+      "name": "United Arab Emirates",
+      "continent": "AS",
+      "flag_emoji": "🇦🇪",
+      "currency": 16,
+      "language": 3,
+      "tel_code": "971",
+      "time_zones": "UTC+02:00",
+      "translations": {
+        "English": "United Arab Emirates",
+        "عربي": "دولة الإمارات العربية المتحدة",
+        "Française": "Emirats Arabes Unis"
+      },
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  },
+  {
+    "model": "Address.Country",
+    "pk": 3,
+    "fields": {
+      "name": "France",
+      "continent": "EU",
+      "flag_emoji": "🇫🇷",
+      "currency": 4,
+      "language": 2,
+      "tel_code": "33",
+      "time_zones": "UTC+02:00",
+      "translations": {
+        "English": "France",
+        "عربي": "فرنسا",
+        "Française": "République française"
+      },
+      "created_at": "2023-09-16T17:41:28+00:00",
+      "last_updated": "2023-09-16T17:41:28+00:00"
+    }
+  }
+]

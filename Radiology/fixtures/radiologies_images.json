@@ -1,0 +1,10 @@
+[
+  {
+    "model": "Radiology.RadiologyImage",
+    "pk": "1",
+    "fields": {
+      "RadiologySession": 1,
+      "image": ""
+    }
+  }
+]

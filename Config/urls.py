@@ -37,6 +37,7 @@ urlpatterns += i18n_patterns(
     # path("", include("django.contrib.auth.urls")), # include all auth views
     # path("", include("Logs.urls", namespace="Logs")),
     path("", include("User.urls", namespace="User")),
+    path("corona_dashboard", include("CoronaDashboard.urls", namespace="CoronaDashboard")),
     # Rest_Fram_Work
     path("api/", include("API.urls", namespace="API")),
     path("api/", include(router.urls)),

@@ -129,6 +129,8 @@ MY_APPS = [
     # "Logs",
     ## API RestFrameWork & GraphQL
     "API",
+    ## Corona Dashboard
+    "CoronaDashboard",
     ## End My Apps
     "Tool",
 ]

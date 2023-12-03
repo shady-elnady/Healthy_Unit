@@ -118,6 +118,7 @@ MY_APPS = [
 ]
 
 INSTALLED_APPS = [
+    "admin_black.apps.AdminBlackConfig",  # Black Dashboard
     "django.contrib.admin",
     # "Utils.Helpers.adminpanel.AdminConfig",  # Custom Admin Panel
     "django.contrib.auth",

@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-import os
+import os, random, string
 import re
 from pathlib import Path
 import django
@@ -39,6 +39,8 @@ environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 BASE_URL = env("BASE_URL")
 
 SECRET_KEY = env("SECRET_KEY")
+if not SECRET_KEY:
+    SECRET_KEY = "".join(random.choice(string.ascii_lowercase) for i in range(32))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # False if not in os.environ because of casting above
@@ -58,6 +60,20 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "herokuapp.com",
 ]
+
+
+# Add here your deployment HOSTS
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:8000",
+    "http://localhost:5085",
+    "http://127.0.0.1:8000",
+    "http://127.0.0.1:5085",
+]
+
+RENDER_EXTERNAL_HOSTNAME = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+
 
 CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
 
@@ -118,6 +134,7 @@ MY_APPS = [
 ]
 
 INSTALLED_APPS = [
+    "admin_gradient.apps.AdminGradientConfig",
     "django.contrib.admin",
     # "Utils.Helpers.adminpanel.AdminConfig",  # Custom Admin Panel
     "django.contrib.auth",
@@ -137,6 +154,7 @@ SITE_ID = 1
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    # "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",  # for Multi Languages & Translation
     "django.middleware.common.CommonMiddleware",

@@ -21,6 +21,8 @@ def pages(request):
     # Pick out the html file name from the url. And load that template.
     try:
         load_template = request.path.split("/")[-1]
+        print("Shady Pages Name")
+        print(load_template)
 
         if load_template == "admin":
             return HttpResponseRedirect(reverse("admin:index"))

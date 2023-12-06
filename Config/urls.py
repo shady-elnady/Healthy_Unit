@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path("blog/", include("blog.urls"))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 from django.contrib import admin
 from django.urls import path, include, re_path
 from django.utils.translation import gettext_lazy as _
@@ -37,7 +37,9 @@ urlpatterns += i18n_patterns(
     # path("", include("django.contrib.auth.urls")), # include all auth views
     # path("", include("Logs.urls", namespace="Logs")),
     path("", include("User.urls", namespace="User")),
-    path("corona_dashboard", include("CoronaDashboard.urls", namespace="CoronaDashboard")),
+    path(
+        "corona_dashboard", include("CoronaDashboard.urls", namespace="CoronaDashboard")
+    ),
     # Rest_Fram_Work
     path("api/", include("API.urls", namespace="API")),
     path("api/", include(router.urls)),
@@ -51,7 +53,7 @@ urlpatterns += i18n_patterns(
     # Admin
     path("admin/", admin.site.urls),
     path("", include(settings.ADMIN_DASHBOARD["url"])),
-    path('', include('django_dyn_dt.urls')), # <-- NEW: Dynamic_DT Routing
+    path("", include("django_dyn_dt.urls")),  # <-- NEW: Dynamic_DT Routing
 )
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

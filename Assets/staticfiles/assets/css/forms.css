@@ -7,10 +7,13 @@
     padding: 10px;
     font-size: 13px;
     border-bottom: 1px solid #eee;
+    display: table-row !important;
 }
-
 .form-row img, .form-row input {
     vertical-align: middle;
+}
+.form-row .field-title {
+    padding-left: 0 !important;
 }
 
 .form-row label input[type="checkbox"] {
@@ -104,10 +107,10 @@ form ul.inline li {
     width: 350px;
 }
 
-/* form .aligned ul {
+form .aligned ul {
     margin-left: 160px;
     padding-left: 10px;
-} */
+}
 
 form .aligned ul.radiolist {
     display: inline-block;
@@ -152,8 +155,8 @@ input[type="text"],
 input[type="email"],
 input[type="password"],
 input[type="number"],
-textarea,
-select {
+select,
+textarea {
     display: block;
     width: 100%;
     padding: 0.5rem 20px;
@@ -467,13 +470,13 @@ body.popup .submit-row {
 }
 
 .inline-group .tabular th.original {
-    width: 0px;
-    padding: 0;
+    width: 0px !important;
+    padding: 0 !important;
 }
 
 .inline-group .tabular td.original p {
     position: absolute;
-    right: 0;
+    left: 5px;
     /*height: 1.1em;*/
     /*padding: 2px 9px;*/
     overflow: hidden;
@@ -510,13 +513,13 @@ body.popup .submit-row {
 .inline-group ul.tools a.add,
 .inline-group div.add-row a,
 .inline-group .tabular tr.add-row td a {
-    background: url(../img/icon-addlink.svg) 0 1px no-repeat;
+    background: url(../images/icon-addlink.svg) 0 1px no-repeat;
     padding-left: 16px;
     font-size: 12px;
 }
 
 .empty-form {
-    display: none;
+    display: none !important;
 }
 
 /* RELATED FIELD ADD ONE / LOOKUP */
@@ -532,13 +535,13 @@ body.popup .submit-row {
 .add-another {
     width: 16px;
     height: 16px;
-    background-image: url(../img/icon-addlink.svg);
+    background-image: url(../images/icon-addlink.svg);
 }
 
 .related-lookup {
     width: 16px;
     height: 16px;
-    background-image: url(../img/search.svg);
+    background-image: url(../images/search.svg);
 }
 
 form .related-widget-wrapper ul {
@@ -549,11 +552,4 @@ form .related-widget-wrapper ul {
 
 .clearable-file-input input {
     margin-top: 0;
-}
-.table thead th {
-    padding: 0.5rem 0.5rem !important;
-}
-.actions .btn {
-    margin-bottom: 0 !important;
-    padding: 12px;
 }

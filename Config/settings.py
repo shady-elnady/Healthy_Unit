@@ -21,6 +21,7 @@ from django.db.backends.postgresql.psycopg_any import IsolationLevel
 from templated_email.backends.vanilla_django import TemplateBackend
 import environ
 
+
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False),

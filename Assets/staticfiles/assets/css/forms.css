@@ -104,10 +104,10 @@ form ul.inline li {
     width: 350px;
 }
 
-form .aligned ul {
+/* form .aligned ul {
     margin-left: 160px;
     padding-left: 10px;
-}
+} */
 
 form .aligned ul.radiolist {
     display: inline-block;
@@ -151,6 +151,8 @@ form .aligned ul li {
 input[type="text"],
 input[type="email"],
 input[type="password"],
+input[type="number"],
+textarea,
 select {
     display: block;
     width: 100%;
@@ -547,4 +549,11 @@ form .related-widget-wrapper ul {
 
 .clearable-file-input input {
     margin-top: 0;
+}
+.table thead th {
+    padding: 0.5rem 0.5rem !important;
+}
+.actions .btn {
+    margin-bottom: 0 !important;
+    padding: 12px;
 }

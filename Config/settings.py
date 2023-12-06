@@ -11,9 +11,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-import os, random, string
+import os, random, string, inspect
+import django_dyn_dt
 import re
-from pathlib import Path
 import django
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
@@ -102,6 +102,7 @@ THIRD_LIBRARIES = [
     "anymail",
     "templated_email",
     "mapwidgets",
+    "django_dyn_dt",
 ]
 
 # My Applications
@@ -135,8 +136,34 @@ MY_APPS = [
     "Tool",
 ]
 
+# Admin Dashboard Libraries
+ADMIN_DASHBOARDS = {
+    "gradient": {
+        "app": "admin_gradient.apps.AdminGradientConfig",
+        "url": "admin_gradient.urls",
+    },
+    "corporate": {
+        "app": "admin_corporate.apps.AdminCorporateConfig",
+        "url": "admin_corporate.urls",
+    },
+    "black": {
+        "app": "admin_black.apps.AdminBlackConfig",
+        "url": "admin_black.urls",
+    },
+    "atlantis": {
+        "app": "admin_atlantis.apps.AdminAtlantisConfig",
+        "url": "admin_atlantis.urls",
+    },
+    "datta": {
+        "app": "admin_datta.apps.AdminDattaConfig",
+        "url": "admin_datta.urls",
+    },
+}
+
+ADMIN_DASHBOARD = ADMIN_DASHBOARDS["datta"]
+
 INSTALLED_APPS = [
-    "admin_gradient.apps.AdminGradientConfig",
+    ADMIN_DASHBOARD["app"],
     "django.contrib.admin",
     # "Utils.Helpers.adminpanel.AdminConfig",  # Custom Admin Panel
     "django.contrib.auth",
@@ -173,13 +200,16 @@ ROOT_URLCONF = "Config.urls"
 FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
 
 TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")  # ROOT dir for templates
-
+TEMPLATE_DIR_DATATB = os.path.join(
+    BASE_DIR, "django_dyn_dt/templates"
+)  # <-- NEW: Dynamic_DT
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
             TEMPLATE_DIR,
             django.__path__[0] + "/forms/templates",
+            TEMPLATE_DIR_DATATB,
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -290,7 +320,12 @@ STATIC_URL = "/static/"
 
 STATIC_ROOT = os.path.join(ASSETS_DIR, "staticfiles")
 
-STATICFILES_DIRS = (os.path.join(ASSETS_DIR, "static"),)
+DYN_DB_PKG_ROOT = os.path.dirname(inspect.getfile(django_dyn_dt))  # <-- NEW: Dynamic_DT
+
+STATICFILES_DIRS = (
+    os.path.join(ASSETS_DIR, "static"),
+    os.path.join(DYN_DB_PKG_ROOT, "templates/static"),  # <-- NEW: Dynamic_DT
+)
 
 STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.DefaultStorageFinder",
@@ -302,6 +337,14 @@ STATICFILES_FINDERS = (
 MEDIA_URL = "/media/"
 
 MEDIA_ROOT = os.path.join(ASSETS_DIR, "media")
+
+# ### DYNAMIC_DATATB Settings ###
+DYNAMIC_DATATB = {
+    # SLUG -> Import_PATH
+    "category": "Category.models.Category",
+    "brand": "Brand.models.Brand",
+}
+########################################
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

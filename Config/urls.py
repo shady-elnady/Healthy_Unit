@@ -50,7 +50,8 @@ urlpatterns += i18n_patterns(
     ),
     # Admin
     path("admin/", admin.site.urls),
-    path("", include("admin_gradient.urls")),
+    path("", include(settings.ADMIN_DASHBOARD["url"])),
+    path('', include('django_dyn_dt.urls')), # <-- NEW: Dynamic_DT Routing
 )
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

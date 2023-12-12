@@ -3,3 +3,4 @@ from .email import (
     SuccessVerifyEmailView,
     # EMailVerifyView,
 )
+from .logIn import logIn

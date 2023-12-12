@@ -161,7 +161,7 @@ ADMIN_DASHBOARDS = {
     },
 }
 
-ADMIN_DASHBOARD = ADMIN_DASHBOARDS["datta"]
+ADMIN_DASHBOARD = ADMIN_DASHBOARDS["black"]
 
 INSTALLED_APPS = [
     ADMIN_DASHBOARD["app"],
@@ -373,9 +373,9 @@ CURRENCY_CHOICES = [
 DEFAULT_CURRENCY = "EG"
 
 ##
-# LOGIN_URL = reverse_lazy("Logs:LogIn")
+LOGIN_URL = reverse_lazy("User:Log_In")
 # LOGIN_REDIRECT_URL = reverse_lazy("Logs:Home")
-# LOGOUT_REDIRECT_URL = reverse_lazy("Logs:LogIn")
+LOGOUT_REDIRECT_URL = reverse_lazy("User:Log_In")
 # LOGOUT_URL = reverse_lazy("Logs:LogOut")
 
 ## Twilio

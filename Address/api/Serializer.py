@@ -82,7 +82,7 @@ class StateSerializer(GeoFeatureModelSerializer):
 
     class Meta:
         model = State
-        geo_field = "geo_polygon_location"
+        geo_field = "geo_location"
         fields = [
             "url",
             "id",
@@ -90,7 +90,7 @@ class StateSerializer(GeoFeatureModelSerializer):
             "city",
             "postal_code",
             "state_type",
-            "geo_polygon_location",
+            "geo_location",
             "translations",
             "created_at",
             "last_updated",
@@ -99,16 +99,16 @@ class StateSerializer(GeoFeatureModelSerializer):
 
 class StreetSerializer(GeoFeatureModelSerializer):
     state = StateSerializer(many=False)
-    geo_polygon_location = GeometryField()
+    geo_location = GeometryField()
     class Meta:
         model = Street
-        geo_field = "geo_polygon_location"
+        geo_field = "geo_location"
         fields = [
             "url",
             "id",
             "name",
             "state",
-            "geo_polygon_location",
+            "geo_location",
             "translations",
             "created_at",
             "last_updated",
@@ -133,7 +133,7 @@ class StreetSerializer(GeoFeatureModelSerializer):
 
 class LocalitySerializer(GeoFeatureModelSerializer):
     state = StateSerializer(many=False)
-    geo_polygon_location = GeometryField()
+    geo_location = GeometryField()
 
     class Meta:
         model = Locality
@@ -142,12 +142,12 @@ class LocalitySerializer(GeoFeatureModelSerializer):
             "id",
             "name",
             "state",
-            "geo_polygon_location",
+            "geo_location",
             "translations",
             "created_at",
             "last_updated",
         ]
-        geo_field = "geo_polygon_location"
+        geo_field = "geo_location"
         auto_bbox = True
         # bbox_geo_field = 'bbox_geometry'
 
@@ -155,7 +155,7 @@ class LocalitySerializer(GeoFeatureModelSerializer):
 class AddressSerializer(GeoModelSerializer):
     locality = LocalitySerializer(many=False)
     street = StreetSerializer(many=False)
-    geo_point_location = GeometryField()
+    geo_location = GeometryField()
 
     class Meta:
         model = Address
@@ -165,9 +165,9 @@ class AddressSerializer(GeoModelSerializer):
             "name",
             "locality",
             "street",
-            "geo_point_location",
+            "geo_location",
             "translations",
             "created_at",
             "last_updated",
         ]
-        geo_field = "geo_point_location"
+        geo_field = "geo_location"

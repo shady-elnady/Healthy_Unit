@@ -9,7 +9,7 @@ from ...models.Profile import Profile, ProfileImage
 
 
 class ProfileImageSerializer(HyperlinkedModelSerializer):
-        
+    class Meta:
         model = ProfileImage
         fields = [
             "url",
@@ -27,7 +27,7 @@ class ProfileSerializer(HyperlinkedModelSerializer):
     currency = CurrencySerializer(many=False)
     address = AddressSerializer(many=False)
     family = FamilySerializer(many=False)
-    ProfileImages = ProfileImageSerializer(many=True)
+    profileimage = ProfileImageSerializer(many=True)
 
     class Meta:
         model = Profile
@@ -45,7 +45,7 @@ class ProfileSerializer(HyperlinkedModelSerializer):
             "currency",
             "language",
             "age",
-            "ProfileImages",
+            "profileimage",
             "created_at",
             "last_updated",
         ]

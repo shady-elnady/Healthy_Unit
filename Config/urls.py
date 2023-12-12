@@ -38,7 +38,8 @@ urlpatterns += i18n_patterns(
     # path("", include("Logs.urls", namespace="Logs")),
     path("", include("User.urls", namespace="User")),
     path(
-        "corona_dashboard", include("CoronaDashboard.urls", namespace="CoronaDashboard")
+        "corona_dashboard",
+        include("CoronaDashboard.urls", namespace="CoronaDashboard"),
     ),
     # Rest_Fram_Work
     path("api/", include("API.urls", namespace="API")),

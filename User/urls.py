@@ -5,12 +5,18 @@ from .views import (
     SuccessVerifyEmailView,
     verify_account_email,
     # EMailVerifyView,
+    logIn,
 )
 
 app_name = "User"
 
 
 urlpatterns = [
+    path(
+        "log_in/",
+        logIn,
+        name="Log_In",
+    ),
     path(
         "success_verify_account_email/",
         SuccessVerifyEmailView.as_view(),

@@ -7,7 +7,7 @@ from Utils.Helpers.cach_mixin import CachedMixin
 
 from .models.Family import Family
 from .models.User import User
-from .models.Profile import Profile, ProfileImage
+from .models.Profile import Profile, Avatar
 from .models.NickName import NickName
 
 
@@ -19,11 +19,11 @@ class NickNameInline(
     extra = 1
 
 
-class ProfileImageInline(
+class AvatarInline(
     TabularInline,  # Use admin.TabularInline for ForeignKey.
     # admin.StackedInline, # # Use admin.StackedInline for OneToOne
 ):
-    model = ProfileImage
+    model = Avatar
     extra = 2
 
 
@@ -37,7 +37,7 @@ class ProfileAdmin(
     extra = 1
     inlines = [
         NickNameInline,
-        ProfileImageInline,
+        AvatarInline,
     ]
 
 

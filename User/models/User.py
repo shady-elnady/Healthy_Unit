@@ -21,15 +21,15 @@ class User(
     REQUIRED_FIELDS = [
         "name",
         "email",
-        "mobile",
+        "phone_number",
         "password",
     ]
 
-    mobile_regex = RegexValidator(
+    phone_number_regex = RegexValidator(
         regex=r"^\+?1?\d{9,15}$",  # ^(\+\d{1,3})?,?\s?\d{8,13}
         message=_(
             _(
-                "Mobile Number must not consist of space and requires country code. eg : +6591258565."
+                "Phone Number must not consist of space and requires country code. eg : +6591258565."
             )
         ),
     )
@@ -45,11 +45,12 @@ class User(
         error_messages={"unique": _("The Name must Unique")},
         verbose_name=_("Name"),
     )
-    otp = CharField(
+    display_name = CharField(
         max_length=25,
+        unique=True,
         blank=True,
         null=True,
-        verbose_name=_("OTP"),
+        verbose_name=_("Display Name"),
     )
     national_id = CharField(
         max_length=14,
@@ -63,12 +64,12 @@ class User(
         error_messages={"unique": _("E-Mail Is Used")},
         verbose_name=_("E-mail"),
     )
-    mobile = CharField(
+    phone_number = CharField(
         max_length=16,
         unique=True,
-        validators=[mobile_regex],
-        error_messages={"unique": _("Mobile Is Used")},
-        verbose_name=_("Mobile"),
+        validators=[phone_number_regex],
+        error_messages={"unique": _("Phone Number Is Used")},
+        verbose_name=_("Phone Number"),
     )
     is_active = BooleanField(
         default=False,
@@ -82,9 +83,9 @@ class User(
         default=False,
         verbose_name=_("E-mail Verified"),
     )
-    mobile_verified = BooleanField(
+    phone_number_verified = BooleanField(
         default=False,
-        verbose_name=_("Mobile Verified"),
+        verbose_name=_("Phone Number Verified"),
     )
     is_superuser = BooleanField(
         default=False,
@@ -93,6 +94,10 @@ class User(
     is_staff = BooleanField(
         default=False,
         verbose_name=_("is Staff"),
+    )
+    disabled = BooleanField(
+        default=False,
+        verbose_name=_("Disabled"),
     )
 
     def __str__(self) -> str:
@@ -104,3 +109,5 @@ class User(
     class Meta:
         verbose_name = _("User")
         verbose_name_plural = _("Users")
+        db_table = "User"
+        ordering = ["-date_joined"]

@@ -1,12 +1,10 @@
 from django.contrib.auth.models import BaseUserManager
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.translation import gettext_lazy as _
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, Optional, Any
 from django.db import transaction
 
 from polymorphic_tree.managers import PolymorphicMPTTModelManager
-
-from typing import Any
 
 if TYPE_CHECKING:
     from ..models.User import User
@@ -20,13 +18,13 @@ class UserManager(BaseUserManager, PolymorphicMPTTModelManager):
         name: str,
         national_id: str,
         email: str,
-        mobile: str,
+        phone_number: str,
         password: Optional[str] = None,
         **extra_fields,
     ) -> "User":
         # if not email:
         #     raise ValueError("The Email must be set")
-        values = [name, national_id, email, mobile]
+        values = [name, national_id, email, phone_number]
         field_value_map = dict(zip(self.model.REQUIRED_FIELDS, values))
 
         for field_name, value in field_value_map.items():
@@ -37,7 +35,7 @@ class UserManager(BaseUserManager, PolymorphicMPTTModelManager):
                 name=name,
                 national_id=national_id,
                 email=self.normalize_email(email),
-                mobile=mobile,
+                phone_number=phone_number,
                 **extra_fields,
             )
             user.set_password(password)
@@ -49,7 +47,7 @@ class UserManager(BaseUserManager, PolymorphicMPTTModelManager):
         name: str,
         national_id: str,
         email: str,
-        mobile: str,
+        phone_number: str,
         password: Optional[str] = None,
         **extra_fields,
     ) -> "User":
@@ -57,14 +55,16 @@ class UserManager(BaseUserManager, PolymorphicMPTTModelManager):
         extra_fields.setdefault("is_active", True)
         if extra_fields.get("is_staff") is False:
             raise ValueError(f"{_('StaffUser must have')} is_staff=True.")
-        return self.create_user(name, national_id, email, mobile, password, **extra_fields)
+        return self.create_user(
+            name, national_id, email, phone_number, password, **extra_fields
+        )
 
     def create_superUser(
         self,
         name: str,
         national_id: str,
         email: str,
-        mobile: str,
+        phone_number: str,
         password: Optional[str] = None,
         **extra_fields,
     ) -> "User":
@@ -73,13 +73,15 @@ class UserManager(BaseUserManager, PolymorphicMPTTModelManager):
         extra_fields.setdefault("is_active", True)
         extra_fields.setdefault("is_verified", True)
         extra_fields.setdefault("email_verified", True)
-        extra_fields.setdefault("mobile_verified", True)
+        extra_fields.setdefault("phone_number_verified", True)
 
         if extra_fields.get("is_staff") is False:
             raise ValueError(f"{_('Superuser must have')} is_staff=True.")
         if extra_fields.get("is_superuser") is not True:
             raise ValueError(f"{_('Superuser must have')} is_superuser=True.")
-        return self.create_user(name, national_id, email, mobile, password, **extra_fields)
+        return self.create_user(
+            name, national_id, email, phone_number, password, **extra_fields
+        )
 
     def get_if_exist(self, **extra_fields: Any) -> "User":
         try:

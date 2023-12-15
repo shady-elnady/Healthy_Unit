@@ -8,8 +8,8 @@ from .utils import is_ajax, classify_face
 import base64
 from django.core.files.base import ContentFile
 
-from Person.User.models.Profile import Profile
-from App.Logs.models import Log
+from User.models.Profile import Profile
+from .models import Log
 
 # Create your views here.
 

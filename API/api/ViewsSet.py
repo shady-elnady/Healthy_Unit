@@ -20,6 +20,7 @@ class RegisterViewSet(ModelViewSet):
     queryset = get_user_model().objects.all()
     serializer_class = RegisterSerializer
     permission_classes = [AllowAny]
+    # authentication_classes = []
 
     # @csrf_exempt
     def create(self, request, *args, **kwargs):

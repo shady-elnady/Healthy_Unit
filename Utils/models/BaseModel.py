@@ -58,16 +58,22 @@ class BaseAutoIncrementModel(Model):
 
 
 class BaseUUIDModel(Model):
-    id = UUIDField(
+    uid = UUIDField(
         primary_key=True,
         default=uuid.uuid4,
         editable=False,
-        verbose_name=_("ID"),
+        verbose_name=_("UID"),
     )
+
+    def __str__(self) -> str:
+        return str(self.uid)
+
+    def __decode__(self) -> str:
+        return str(self.uid)
 
     @property
     def slug(self) -> str:
-        return slugify(f"{self.id}")
+        return slugify(f"{self.uid}")
 
     class Meta:
         abstract = True
@@ -79,6 +85,12 @@ class BaseModel(BaseAutoIncrementModel, BaseTimeStampModel):
 
 
 class BaseUUIDTimeModel(BaseUUIDModel, BaseTimeStampModel):
+    photo_url = ImageField(
+        upload_to=upload_image_to,
+        null=True,
+        blank=True,
+        verbose_name=_("Photo URL"),
+    )
     class Meta:
         abstract = True
 

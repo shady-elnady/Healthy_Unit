@@ -86,14 +86,14 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         national_id = input("national_id: ")
         email = input("email: ")
-        mobile = input("mobile: ")
+        phone_number = input("phone_number: ")
         password = input("password: ")
 
         try:
             self.UserModel.objects.create_superUser(
                 national_id=national_id,
                 email=email,
-                mobile=mobile,
+                phone_number=phone_number,
                 password=password,
             )
             self.stdout.write(self.style.SUCCESS("Successfully Create Super Admin"))

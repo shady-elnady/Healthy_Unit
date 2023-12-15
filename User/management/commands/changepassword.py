@@ -22,11 +22,11 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument(
-            "username",
+            "national_id",
             nargs="?",
             help=(
-                "Username to change password for; by default, it's the current "
-                "username."
+                "National ID to change password for; by default, it's the current "
+                "National ID."
             ),
         )
         parser.add_argument(
@@ -36,17 +36,17 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
-        if options["username"]:
-            username = options["username"]
+        if options["national_id"]:
+            national_id = options["national_id"]
         else:
-            username = getpass.getuser()
+            national_id = getpass.getuser()
 
         try:
             u = UserModel._default_manager.using(options["database"]).get(
-                **{UserModel.USERNAME_FIELD: username}
+                **{UserModel.USERNAME_FIELD: national_id}
             )
         except UserModel.DoesNotExist:
-            raise CommandError("user '%s' does not exist" % username)
+            raise CommandError("user '%s' does not exist" % national_id)
 
         self.stdout.write("Changing password for user '%s'" % u)
 

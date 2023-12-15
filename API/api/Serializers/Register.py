@@ -80,6 +80,7 @@ class RegisterSerializer(ModelSerializer):
         model = User
         fields = [
             "name",
+            "display_name",
             "national_id",
             "email",
             "mobile",
@@ -88,6 +89,7 @@ class RegisterSerializer(ModelSerializer):
         extra_kwargs = {
             "id": {"read_only": True},
             "name": {"required": True},
+            "display_name": {"required": True},
             "national_id": {"required": True},
             "email": {"required": True},
             "mobile": {"required": True},

@@ -1,7 +1,7 @@
 import face_recognition as Face_Recognition
 import numpy as np
 
-from Person.User.models.Profile import Profile
+from User.models.Profile import Profile
 
 
 def is_ajax(request):

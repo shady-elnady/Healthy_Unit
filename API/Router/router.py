@@ -34,8 +34,8 @@ from Radiology.api.ViewsSet import (
 )
 from Service.api.ViewsSet import ParentServiceViewSet, ServiceViewSet
 from User.api.Views.family_views_set import FamilyViewSet
-from User.api.Views.user_views_set import UserViewSet
-from User.api.Views.profile_views_set import ProfileImageViewSet, ProfileViewSet
+from User.api.Views.User_ViewSet import UserViewSet
+from User.api.Views.profile_views_set import AvatarViewSet, ProfileViewSet
 from Vaccination.api.ViewsSet import (
     CampaignViewSet,
     VaccinationRecordViewSet,
@@ -50,58 +50,78 @@ router = routers.DefaultRouter()
 # API
 router.register("register", RegisterViewSet, basename="register")
 # Language
-router.register("languages", LanguageViewSet)
+router.register("languages", LanguageViewSet, basename="language")
 # Currency
-router.register("currencies", CurrencyViewSet)
+router.register("currencies", CurrencyViewSet, basename="currency")
 # Category
-router.register("categories", CategoryViewSet)
+router.register("categories", CategoryViewSet, basename="category")
 # Address
-router.register("address", AddressViewSet)
-router.register("street", StreetViewSet)
-router.register("states", StateViewSet)
-router.register("localities", LocalityViewSet)
-router.register("cities", CityViewSet)
-router.register("governorates", GovernorateViewSet)
-router.register("countries", CountryViewSet)
+router.register("address", AddressViewSet, basename="address")
+router.register("streets", StreetViewSet, basename="street")
+router.register("states", StateViewSet, basename="state")
+router.register("localities", LocalityViewSet, basename="locality")
+router.register("cities", CityViewSet, basename="city")
+router.register("governorates", GovernorateViewSet, basename="governorate")
+router.register("countries", CountryViewSet, basename="country")
 # Brand
-router.register("brands", BrandViewSet)
+router.register("brands", BrandViewSet, basename="brand")
 # User
-router.register("users", UserViewSet)
-router.register("families", FamilyViewSet)
-router.register("profiles", ProfileViewSet)
-router.register("profiles_images", ProfileImageViewSet)
+router.register("users", UserViewSet, basename=UserViewSet.basename)
+router.register("families", FamilyViewSet, basename="family")
+router.register("profiles", ProfileViewSet, basename="profile")
+router.register("avatars", AvatarViewSet, basename="avatar")
 # Doctor
-router.register("doctors", DoctorViewSet)
+router.register("doctors", DoctorViewSet, basename="doctor")
 # Employee
-router.register("employees", EmployeeViewSet)
+router.register("employees", EmployeeViewSet, basename="employee")
 # Client
-router.register("clients", ClientViewSet)
-router.register("users_polymorphic", UserPolymorphicViewSet)
+router.register("clients", ClientViewSet, basename="client")
+router.register(
+    "users_polymorphics", UserPolymorphicViewSet, basename="user_polymorphic"
+)
 # Service
-router.register("services", ServiceViewSet)
-router.register("parents_services", ParentServiceViewSet)
+router.register("services", ServiceViewSet, basename="service")
+router.register("parents_services", ParentServiceViewSet, basename="parent_service")
 # Notification
-router.register("notifications", NotificationViewSet)
+router.register("notifications", NotificationViewSet, basename="user")
 # Vaccination
-router.register("vaccinations", VaccinationViewSet)
-router.register("campaigns", CampaignViewSet)
-router.register("vaccinations_records", VaccinationRecordViewSet)
+router.register("vaccinations", VaccinationViewSet, basename="vaccination")
+router.register("campaigns", CampaignViewSet, basename="campaign")
+router.register(
+    "vaccinations_records", VaccinationRecordViewSet, basename="vaccination_record"
+)
 # Drug
-router.register("pharmaceutical_forms", PharmaceuticalFormViewSet)
-router.register("drug_effective_materials", DrugEffectiveMaterialViewSet)
-router.register("drugs", DrugViewSet)
-router.register("drug_packings", DrugPackingViewSet)
+router.register(
+    "pharmaceutical_forms", PharmaceuticalFormViewSet, basename="pharmaceutical_form"
+)
+router.register(
+    "drug_effective_materials",
+    DrugEffectiveMaterialViewSet,
+    basename="drug_effective_material",
+)
+router.register("drugs", DrugViewSet, basename="drug")
+router.register("drug_packings", DrugPackingViewSet, basename="drug_packing")
 # Analysis
-router.register("analysis", AnalysisViewSet)
-router.register("reports", ReportViewSet)
+router.register("analysis", AnalysisViewSet, basename="analysis")
+router.register("reports", ReportViewSet, basename="report")
 # VitalSign
-router.register("vital_signs", VitalSignViewSet)
+router.register("vital_signs", VitalSignViewSet, basename="vital_sign")
 # Visit
-router.register("visits", VisitViewSet)
-router.register("visits_vital_signs", VisitVitalSignViewSet)
+router.register("visits", VisitViewSet, basename="visit")
+router.register(
+    "visits_vital_signs", VisitVitalSignViewSet, basename="visit_vital_sign"
+)
 # Radiology
-router.register("radiologies", RadiologyViewSet)
-router.register("radiologies_sessions", RadiologySessionViewSet)
-router.register("radiologies_images", RadiologyImageViewSet)
-router.register("services_polymorphic", ServicePolymorphicViewSet)
-router.register("services_records_polymorphic", ServiceRecordPolymorphicViewSet)
+router.register("radiologies", RadiologyViewSet, basename="radiology")
+router.register(
+    "radiologies_sessions", RadiologySessionViewSet, basename="radiology_session"
+)
+router.register("radiologies_images", RadiologyImageViewSet, basename="radiology_image")
+router.register(
+    "services_polymorphic", ServicePolymorphicViewSet, basename="service_polymorphic"
+)
+router.register(
+    "services_records_polymorphic",
+    ServiceRecordPolymorphicViewSet,
+    basename="service_record_polymorphic",
+)

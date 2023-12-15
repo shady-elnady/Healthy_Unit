@@ -5,12 +5,12 @@ from Address.api.Serializer import AddressSerializer
 from Currency.api.Serializer import CurrencySerializer
 from .family_serializer import FamilySerializer
 from .user_serializer import UserSerializer
-from ...models.Profile import Profile, ProfileImage
+from ...models.Profile import Profile, Avatar
 
 
-class ProfileImageSerializer(HyperlinkedModelSerializer):
+class AvatarSerializer(HyperlinkedModelSerializer):
     class Meta:
-        model = ProfileImage
+        model = Avatar
         fields = [
             "url",
             "id",
@@ -27,7 +27,7 @@ class ProfileSerializer(HyperlinkedModelSerializer):
     currency = CurrencySerializer(many=False)
     address = AddressSerializer(many=False)
     family = FamilySerializer(many=False)
-    profileimage = ProfileImageSerializer(many=True)
+    Avatars = AvatarSerializer(many=True)
 
     class Meta:
         model = Profile
@@ -45,7 +45,7 @@ class ProfileSerializer(HyperlinkedModelSerializer):
             "currency",
             "language",
             "age",
-            "profileimage",
+            "Avatars",
             "created_at",
             "last_updated",
         ]

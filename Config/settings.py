@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-import os, random, string, inspect
+import random, string, inspect
+from os.path import join, exists, dirname
+from os import makedirs
 import django_dyn_dt
 import re
 import django
@@ -20,24 +22,41 @@ from django.utils.translation import gettext_lazy as _
 from django.db.backends.postgresql.psycopg_any import IsolationLevel
 from templated_email.backends.vanilla_django import TemplateBackend
 import environ
+import pyrebase
 
 
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False),
     TEMPLATE_DEBUG=(bool, False),
+    ENV_TYPE=(str, "prod"),
     BASE_URL=(str, "http://127.0.0.1:8000/"),
+    OTP_ATTEMPT_LIMIT=(int, 10000),
+    OTP_ATTEMPT_TIMEOUT=(int, 0),
+    OTP_EXPIRY_MINUTES=(int, 10),
 )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-ASSETS_DIR = os.path.join(BASE_DIR, "Assets")
+ASSETS_DIR = join(BASE_DIR, "Assets")
 
 # Take environment variables from .env file
-environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
+environ.Env.read_env(join(BASE_DIR, ".env"))
+
+ENV_TYPE = env("ENV_TYPE").lower()
 
 BASE_URL = env("BASE_URL")
+
+APPEND_SLASH = True
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ORIGIN_WHITELIST = environ.get("CORS_ORIGIN_WHITELIST", "").split(", ")
+
+
+OTP_ATTEMPT_LIMIT = int(env("OTP_ATTEMPT_LIMIT"))
+OTP_ATTEMPT_TIMEOUT = int(env("OTP_ATTEMPT_TIMEOUT"))
+OTP_EXPIRY_MINUTES = int(env("OTP_EXPIRY_MINUTES"))
 
 SECRET_KEY = env("SECRET_KEY")
 if not SECRET_KEY:
@@ -71,7 +90,7 @@ CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:5085",
 ]
 
-RENDER_EXTERNAL_HOSTNAME = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
+RENDER_EXTERNAL_HOSTNAME = env("RENDER_EXTERNAL_HOSTNAME")
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
@@ -104,6 +123,7 @@ THIRD_LIBRARIES = [
     "templated_email",
     "mapwidgets",
     "django_dyn_dt",
+    "drf_yasg",
 ]
 
 # My Applications
@@ -129,6 +149,8 @@ MY_APPS = [
     "Radiology",
     ##
     # "Logs",
+    ##
+    "FireBase",
     ## API RestFrameWork & GraphQL
     "API",
     ## Corona Dashboard
@@ -200,10 +222,8 @@ ROOT_URLCONF = "Config.urls"
 
 FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
 
-TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")  # ROOT dir for templates
-TEMPLATE_DIR_DATATB = os.path.join(
-    BASE_DIR, "django_dyn_dt/templates"
-)  # <-- NEW: Dynamic_DT
+TEMPLATE_DIR = join(BASE_DIR, "templates")  # ROOT dir for templates
+TEMPLATE_DIR_DATATB = join(BASE_DIR, "django_dyn_dt/templates")  # <-- NEW: Dynamic_DT
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -234,7 +254,7 @@ WSGI_APPLICATION = "Config.wsgi.application"
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': str(os.path.join(BASE_DIR, "DataBase", "db.sqlite3")),
+#         'NAME': str(join(BASE_DIR, "DataBase", "db.sqlite3")),
 #     }
 # }
 
@@ -253,6 +273,41 @@ DATABASES = {
         # },
     }
 }
+
+
+"""FIREBASE CREDENTIALS"""
+FIREBASE_ACCOUNT_TYPE = env("FIREBASE_ACCOUNT_TYPE")
+FIREBASE_PROJECT_ID = env("FIREBASE_PROJECT_ID")
+FIREBASE_PRIVATE_KEY_ID = env("FIREBASE_PRIVATE_KEY_ID")
+FIREBASE_PRIVATE_KEY = env("FIREBASE_PRIVATE_KEY")
+FIREBASE_CLIENT_EMAIL = env("FIREBASE_CLIENT_EMAIL")
+FIREBASE_CLIENT_ID = env("FIREBASE_CLIENT_ID")
+FIREBASE_AUTH_URI = env("FIREBASE_AUTH_URI")
+FIREBASE_TOKEN_URI = env("FIREBASE_TOKEN_URI")
+FIREBASE_AUTH_PROVIDER_X509_CERT_URL = env("FIREBASE_AUTH_PROVIDER_X509_CERT_URL")
+FIREBASE_CLIENT_X509_CERT_URL = env("FIREBASE_CLIENT_X509_CERT_URL")
+FIREBASE_WEB_API_KEY = env("FIREBASE_WEB_API_KEY")
+REST_API_URL = env("REST_API_URL")
+#
+# Firebase settings
+try:
+    config = {
+        "apiKey": env("FIREBASE_API_KEY"),
+        "authDomain": env("FIREBASE_AUTH_DOMAIN"),
+        "databaseURL": env("FIREBASE_DATABASE_URL"),
+        "storageBucket": env("FIREBASE_STORAGE_BUCKET"),
+        "projectId": env("FIREBASE_PROJECT_ID"),
+        "messagingSenderId": env("FIREBASE_MESSAGING_SENDER_ID"),
+        "appId": env("FIREBASE_APP_ID"),
+        "measurementId": env("FIREBASE_MEASUREMENT_ID"),
+    }
+    firebase = pyrebase.initialize_app(config)
+    pyrebase_auth = firebase.auth()
+except Exception:
+    raise Exception(
+        "Firebase configuration credentials not found. Please add the configuration to the environment variables."
+    )
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -305,7 +360,7 @@ LANGUAGES_BIDI = [
 ]
 
 LOCALE_PATHS = [
-    os.path.join(BASE_DIR, "Locales"),
+    join(BASE_DIR, "Locales"),
     # "/home/www/project/common_files/locale",
     # "/var/local/translations/locale",
 ]
@@ -319,13 +374,13 @@ INTERNAL_IPS = [
 
 STATIC_URL = "/static/"
 
-STATIC_ROOT = os.path.join(ASSETS_DIR, "staticfiles")
+STATIC_ROOT = join(ASSETS_DIR, "staticfiles")
 
-DYN_DB_PKG_ROOT = os.path.dirname(inspect.getfile(django_dyn_dt))  # <-- NEW: Dynamic_DT
+DYN_DB_PKG_ROOT = dirname(inspect.getfile(django_dyn_dt))  # <-- NEW: Dynamic_DT
 
 STATICFILES_DIRS = (
-    os.path.join(ASSETS_DIR, "static"),
-    os.path.join(DYN_DB_PKG_ROOT, "templates/static"),  # <-- NEW: Dynamic_DT
+    join(ASSETS_DIR, "static"),
+    join(DYN_DB_PKG_ROOT, "templates/static"),  # <-- NEW: Dynamic_DT
 )
 
 STATICFILES_FINDERS = (
@@ -334,10 +389,11 @@ STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 )
 
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = "/media/"
 
-MEDIA_ROOT = os.path.join(ASSETS_DIR, "media")
+MEDIA_ROOT = join(ASSETS_DIR, "media")
 
 # ### DYNAMIC_DATATB Settings ###
 DYNAMIC_DATATB = {
@@ -407,11 +463,14 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.BasicAuthentication",
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
+        "FireBase.utils.authentication.FirebaseAuthentication",  # Custom fireBase Authentiction
     ],
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 2,
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
     "ORDERING_PARAM": "sorters[0][field]",
+    "TEST_REQUEST_DEFAULT_FORMAT": "json",
+    "EXCEPTION_HANDLER": "utilities.utils.custom_exception_handler",
     # "EXCEPTION_HANDLER": "API.exceptions.django_error_handler"  ## Excepitions
 }
 
@@ -429,7 +488,7 @@ TEMPLATED_EMAIL_BACKEND = TemplateBackend
 TEMPLATED_EMAIL_EMAIL_MESSAGE_CLASS = "anymail.message.AnymailMessage"
 # This replaces django.core.mail.EmailMultiAlternatives
 TEMPLATED_EMAIL_EMAIL_MULTIALTERNATIVES_CLASS = "anymail.message.AnymailMessage"
-TEMPLATED_EMAIL_TEMPLATE_DIR = os.path.join(TEMPLATE_DIR, "emails", "templated_emails/")
+TEMPLATED_EMAIL_TEMPLATE_DIR = join(TEMPLATE_DIR, "emails", "templated_emails/")
 TEMPLATED_EMAIL_FILE_EXTENSION = "email"
 TEMPLATED_EMAIL_DJANGO_SUBJECTS = {
     "welcome": _("Welcome to Healthy Unit Website"),
@@ -441,3 +500,77 @@ BASE_APP_URL = "http://localhost:3000"
 BASE_API_URL = "http://localhost:8000"
 GOOGLE_OAUTH2_CLIENT_ID = "Your_google_client_id"
 GOOGLE_OAUTH2_CLIENT_SECRET = "Your_google_client_secret"
+
+# swagger settings
+SWAGGER_SETTINGS = {
+    "USE_SESSION_AUTH": False,
+    "SECURITY_DEFINITIONS": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header",
+        }
+    },
+    "APIS_SORTER": "alpha",
+    "SHOW_REQUEST_HEADERS": True,
+    "JSON_EDITOR": True,
+}
+# cors settings
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_METHODS = [
+    "GET",
+    "POST",
+    "PUT",
+    "PATCH",
+    "DELETE",
+    "OPTIONS",
+]
+CORS_ALLOW_HEADERS = [
+    "Accept",
+    "Content-Type",
+    "Authorization",
+]
+CORS_ALLOW_CREDENTIALS = True
+
+# celery settings
+CELERY_BROKER_URL = env("CELERY_BROKER_URL")
+CELERY_RESULT_BACKEND = env("CELERY_RESULT_BACKEND")
+CELERY_ACCEPT_CONTENT = ["application/json"]
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_TASK_SERIALIZER = "json"
+CELERY_TIMEZONE = "UTC"
+
+
+## Create directory for logs
+LOG_DIR = join(BASE_DIR.parent, "BackendLogs/")
+if not exists(LOG_DIR):
+    makedirs(LOG_DIR)
+ENV_LOG_FILE = join(LOG_DIR, f"{ENV_TYPE}_root.log")
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "[%(levelname)s|%(asctime)s.%(msecs)d|%(name)s|%(module)s|%(funcName)s:%(lineno)s]    %(message)s",
+            "datefmt": "%d/%b/%Y %H:%M:%S",
+        },
+        "local": {
+            "format": "[%(asctime)s|%(name)s|%(module)s|%(funcName)s:%(lineno)s]    %(message)s",
+            "datefmt": "%d/%b/%Y %H:%M:%S",
+        },
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        },
+        "root_file": {
+            "class": "logging.FileHandler",
+            "filename": ENV_LOG_FILE,
+            "formatter": "verbose",
+            "encoding": "utf-8",
+        },
+    },
+    "loggers": {"root": {"handlers": ["console", "root_file"], "level": "INFO"}},
+}

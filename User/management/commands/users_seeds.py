@@ -13,14 +13,14 @@ class Command(BaseCommand):
                 "name": "Shady El Nady",
                 "email": "shadyelnady0@gmail.com",
                 "national_id": "22222222222222",
-                "mobile": "+01022222222",
+                "phone_number": "+01022222222",
                 "password": "shady12345",
             },
             {
                 "name": "Shady El Nady1",
                 "email": "shadyelnady1@gmail.com",
                 "national_id": "33333333333333",
-                "mobile": "+01022222223",
+                "phone_number": "+01022222223",
                 "password": "shady12345",
             },
         ]
@@ -30,7 +30,7 @@ class Command(BaseCommand):
                     name=user["name"],
                     email=user["email"],
                     national_id=user["national_id"],
-                    mobile=user["mobile"],
+                    phone_number=user["phone_number"],
                     password=user["password"],
                 )
                 self.stdout.write(

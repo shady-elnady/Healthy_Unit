@@ -9,8 +9,8 @@ from rest_framework.authentication import (
 from rest_framework.permissions import IsAuthenticated, IsAdminUser, AllowAny
 from rest_framework.viewsets import ModelViewSet
 
-from ...models.Profile import Profile, ProfileImage
-from ..Serializers.profile_serializer import ProfileImageSerializer, ProfileSerializer
+from ...models.Profile import Profile, Avatar
+from ..Serializers.profile_serializer import AvatarSerializer, ProfileSerializer
 
 
 class ProfileViewSet(ModelViewSet):
@@ -27,9 +27,9 @@ class ProfileViewSet(ModelViewSet):
     #     return Profile.objects.all().filter(user=self.request.user)
 
 
-class ProfileImageViewSet(ModelViewSet):
-    queryset = ProfileImage.objects.all()
-    serializer_class = ProfileImageSerializer
+class AvatarViewSet(ModelViewSet):
+    queryset = Avatar.objects.all()
+    serializer_class = AvatarSerializer
     permission_classes = [IsAuthenticated]
     authentication_classes = [
         TokenAuthentication,

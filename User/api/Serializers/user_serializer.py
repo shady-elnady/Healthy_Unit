@@ -1,22 +1,29 @@
 from rest_framework.serializers import HyperlinkedModelSerializer
 
+from .profile_serializer import ProfileSerializer
 from ...models.User import User
 
 
 class UserSerializer(HyperlinkedModelSerializer):
-    # User_Restaurants = UserRestaurantSerializer(many= True)
+    Profile = ProfileSerializer(many=False)
 
     class Meta:
         model = User
         fields = [
             "url",
-            "id",
+            "uid",
             "name",
+            "display_name",
             "national_id",
             "email",
-            "mobile",
+            "phone_number",
+            "photo_url",
+            "Profile",
         ]
         extra_kwargs = {"password": {"write_only": True}}
+
+
+"""
 
     def create(self, validated_data):
         password = validated_data.pop("password", None)
@@ -26,3 +33,5 @@ class UserSerializer(HyperlinkedModelSerializer):
             instance.set_password(password)
         instance.save()
         return instance
+
+"""

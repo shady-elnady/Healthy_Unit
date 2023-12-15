@@ -122,21 +122,21 @@ class Profile(BaseTimeStampModel, BaseImageModel):
         )
 
     def __str__(self) -> str:
-        return f"{self.user.name}"
+        return f"{self.user.display_name}"
 
     def __decode__(self) -> str:
-        return f"{self.user.name}"
+        return f"{self.user.display_name}"
 
     class Meta:
         verbose_name = _("Profile")
         verbose_name_plural = _("Profiles")
 
 
-class ProfileImage(BaseModel, BaseImageModel):
+class Avatar(BaseModel, BaseImageModel):
     profile = ForeignKey(
         Profile,
         on_delete=CASCADE,
-        related_name="%(class)s",
+        related_name="Avatars",
         verbose_name=_("Profile"),
     )
     position = PositiveSmallIntegerField(
@@ -146,5 +146,5 @@ class ProfileImage(BaseModel, BaseImageModel):
     )
 
     class Meta:
-        verbose_name = _("Profile Image")
-        verbose_name_plural = _("Profiles Images")
+        verbose_name = _("Avatar")
+        verbose_name_plural = _("Avatars")

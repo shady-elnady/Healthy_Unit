@@ -1,11 +1,12 @@
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db.models import CharField, EmailField, BooleanField
 from django.utils.translation import gettext_lazy as _
-from django.core.validators import RegexValidator
 
 from Utils.models.BaseModel import BaseUUIDTimeModel
 from Utils.models.BaseTreeNode import BaseTreeNodeMultiModel
-from ..managers.user_manager import UserManager
+from Utils.Assets.messages import Messages
+from Utils.Validators.Regex_Validators import RegexValidators
+from .managers.user_manager import UserManager
 
 # Create your models here.
 
@@ -25,29 +26,18 @@ class User(
         "password",
     ]
 
-    phone_number_regex = RegexValidator(
-        regex=r"^\+?1?\d{9,15}$",  # ^(\+\d{1,3})?,?\s?\d{8,13}
-        message=_(
-            _(
-                "Phone Number must not consist of space and requires country code. eg : +6591258565."
-            )
-        ),
-    )
-    national_id_regex = RegexValidator(
-        regex=r"^\d{14}$",  # ^(\+\d{1,3})?,?\s?\d{8,13}
-        message=_("National ID must be 14 Numbers. eg : 11111111111111"),
-    )
-
     objects = UserManager()
     name = CharField(
         max_length=100,
         unique=True,
-        error_messages={"unique": _("The Name must Unique")},
+        error_messages={"unique": Messages.NAME_UNIQUE_VALIDATION},
+        validators=[RegexValidators.name_regex],
         verbose_name=_("Name"),
     )
     display_name = CharField(
         max_length=25,
         unique=True,
+        error_messages={"unique": Messages.DISPLAY_NAME_UNIQUE_VALIDATION},
         blank=True,
         null=True,
         verbose_name=_("Display Name"),
@@ -55,20 +45,20 @@ class User(
     national_id = CharField(
         max_length=14,
         unique=True,
-        error_messages={"unique": _("National ID must Unique")},
-        validators=[national_id_regex],
+        error_messages={"unique": Messages.NATIONAL_ID_UNIQUE_VALIDATION},
+        validators=[RegexValidators.national_id_regex],
         verbose_name=_("National ID"),
     )
     email = EmailField(
         unique=True,
-        error_messages={"unique": _("E-Mail Is Used")},
+        error_messages={"unique": Messages.EMAIL_UNIQUE_VALIDATION},
         verbose_name=_("E-mail"),
     )
     phone_number = CharField(
         max_length=16,
         unique=True,
-        validators=[phone_number_regex],
-        error_messages={"unique": _("Phone Number Is Used")},
+        error_messages={"unique": Messages.PHONE_UNIQUE_VALIDATION},
+        validators=[RegexValidators.phone_number_regex],
         verbose_name=_("Phone Number"),
     )
     is_active = BooleanField(
@@ -101,13 +91,12 @@ class User(
     )
 
     def __str__(self) -> str:
-        return f"{self.email}"
+        return f"{self.display_name}"
 
     def __decode__(self) -> str:
-        return f"{self.email}"
+        return f"{self.display_name}"
 
     class Meta:
         verbose_name = _("User")
         verbose_name_plural = _("Users")
-        db_table = "User"
-        ordering = ["-date_joined"]
+        ordering = ["-last_updated"]

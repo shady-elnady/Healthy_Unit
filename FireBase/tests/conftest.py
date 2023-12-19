@@ -1,13 +1,13 @@
 import pytest
 from pytest_factoryboy import register
 
-from ..Repository.user_repository import UserRepository
-from .factories import UserFactory
+from ..Repository.FireBase_User_Repository import FireBaseUserRepository
+from .factories import FireBaseUserFactory
 
 
-register(UserFactory, name="user_factory")
+register(FireBaseUserFactory, name="fire_user_factory")
 
 
 @pytest.fixture
 def user_repo():
-    return UserRepository()
+    return FireBaseUserRepository()

@@ -4,11 +4,11 @@ import json
 
 from Utils.entities.Value_Objects import UUID
 from ..utils.authentication import FireBaseAdminAuth
-from .repository.abstract_fire_helper import AbstractFireBaseHelper
+from FireBase.Controllers.Repository.Abstract_FireBase_Helper import AbstractFireBaseHelper
 from User.models import User
 
 
-class FireBaseController(AbstractFireBaseHelper):
+class FireBaseAdminController(AbstractFireBaseHelper):
     def get_user(
         self,
         uid: UUID = None,

@@ -100,6 +100,7 @@ CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
 CORS_ALLOW_CREDENTIALS = True
 
 AUTHENTICATION_BACKENDS = [
+    "User.utils.backends.MyModelBackend",
     # Needed to login by username in Django admin, regardless of `allauth`
     "django.contrib.auth.backends.ModelBackend",
     # `allauth` specific authentication methods, such as login by email
@@ -493,6 +494,7 @@ TEMPLATED_EMAIL_FILE_EXTENSION = "email"
 TEMPLATED_EMAIL_DJANGO_SUBJECTS = {
     "welcome": _("Welcome to Healthy Unit Website"),
     "verify_email": _("Verify Your Account E-Mail"),
+    "password_reset": _("Password Reset Link"),
 }
 
 

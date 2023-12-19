@@ -6,13 +6,13 @@ from rest_framework.authtoken.models import Token
 from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
 
-from EMail.Helpers.email_sender import EMailSender
+from EMail.Helpers.EMail_Sender import EMailSender
 from ..models.User import User
 from ..models.Profile import Profile
 
 
 @receiver(post_save, sender=User)
-def user(sender, instance, created, **kwargs):
+def user(sender, instance: User, created: bool, **kwargs):
     if created:
         with transaction.atomic():
             Profile.objects.create(user=instance)

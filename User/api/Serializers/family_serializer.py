@@ -1,6 +1,6 @@
 from rest_framework.serializers import HyperlinkedModelSerializer
 
-from ...models.Family import Family
+from User.models.Family import Family
 
 
 class FamilySerializer(HyperlinkedModelSerializer):

@@ -1,6 +1,5 @@
 from rest_framework import routers
 
-from API.api.Serializers.Password import ChangePasswordSerializer
 from Analysis.api.ViewsSet import AnalysisViewSet, ReportViewSet
 from Brand.api.ViewsSet import BrandViewSet
 from Client.api.ViewsSet import ClientViewSet, UserPolymorphicViewSet
@@ -33,9 +32,10 @@ from Radiology.api.ViewsSet import (
     ServiceRecordPolymorphicViewSet,
 )
 from Service.api.ViewsSet import ParentServiceViewSet, ServiceViewSet
-from User.api.Views.family_views_set import FamilyViewSet
+from User.api.Views.Avatar_ViewSet import AvatarViewSet
+from User.api.Views.Family_ViewSet import FamilyViewSet
+from User.api.Views.Profile_ViewSet import ProfileViewSet
 from User.api.Views.User_ViewSet import UserViewSet
-from User.api.Views.profile_views_set import AvatarViewSet, ProfileViewSet
 from Vaccination.api.ViewsSet import (
     CampaignViewSet,
     VaccinationRecordViewSet,

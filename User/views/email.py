@@ -7,7 +7,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.views.generic import FormView, TemplateView
 
-from .forms.email_verify_form import EMailVerifyForm
+from .forms.EMailVerify_Form import EMailVerifyForm
 from ..models.User import User
 
 # Create your views here.

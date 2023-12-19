@@ -1,7 +1,7 @@
 from rest_framework.serializers import HyperlinkedModelSerializer
 
-from .profile_serializer import ProfileSerializer
-from ...models.User import User
+from User.models.User import User
+from .Profile_Serializer import ProfileSerializer
 
 
 class UserSerializer(HyperlinkedModelSerializer):
@@ -21,17 +21,3 @@ class UserSerializer(HyperlinkedModelSerializer):
             "Profile",
         ]
         extra_kwargs = {"password": {"write_only": True}}
-
-
-"""
-
-    def create(self, validated_data):
-        password = validated_data.pop("password", None)
-        instance = self.Meta.model(**validated_data)
-        instance.email = instance.email.lower()
-        if password is not None:
-            instance.set_password(password)
-        instance.save()
-        return instance
-
-"""

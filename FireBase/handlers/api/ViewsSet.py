@@ -3,9 +3,9 @@ from requests import Response
 from rest_framework.views import APIView
 from rest_framework import status
 
-from FireBase.Domain.Entities.user_entity import UserEntity
-from FireBase.Repository.user_repository import UserRepository
-from FireBase.Use_Case.user_use_case import UserUseCase
+from FireBase.Domain.Entities.FireBaseUser_Entity import UserEntity
+from FireBase.Repository.FireBase_User_Repository import UserRepository
+from FireBase.Use_Case.FireBase_User_UseCase import UserUseCase
 from .User_Serializers import UserCreateSerializer
 
 

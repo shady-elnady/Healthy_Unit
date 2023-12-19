@@ -1,7 +1,7 @@
 # serializers.py
 from rest_polymorphic.serializers import PolymorphicSerializer
 
-from User.api.Serializers.user_serializer import UserSerializer
+from User.api.Serializers.User_Serializer import UserSerializer
 from Employee.api.Serializer import EmployeeSerializer
 from Doctor.api.Serializer import DoctorSerializer
 from Client.api.Serializer import ClientSerializer

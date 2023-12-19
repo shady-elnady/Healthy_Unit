@@ -11,9 +11,10 @@ class Command(BaseCommand):
         employees = [
             {
                 "name": "Shady El Nady4",
+                "display_name": "Shady El Nady4",
                 "email": "shadyelnady4@gmail.com",
                 "national_id": "44444444444444",
-                "mobile": "+01022222224",
+                "phone_number": "+01022222224",
                 "password": "shady12345",
                 "salary": 4000,
             },
@@ -22,9 +23,10 @@ class Command(BaseCommand):
             try:
                 Employee.objects.create(
                     name=employee["name"],
+                    display_name=employee["display_name"],
                     email=employee["email"],
                     national_id=employee["national_id"],
-                    mobile=employee["mobile"],
+                    phone_number=employee["phone_number"],
                     password=employee["password"],
                     salary=employee["salary"],
                 )

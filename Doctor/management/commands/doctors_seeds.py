@@ -12,10 +12,11 @@ class Command(BaseCommand):
         doctors = [
             {
                 "name": "Ahmed",
+                "display_name": "Ahmed",
                 "email": "ahmedshadyelnady@gmail.com",
                 "national_id": "55555555555555",
-                "mobile": "+01022222225",
-                "password": "ahmed12345",
+                "phone_number": "+01022222225",
+                "password": "Shady@12345",
                 "salary": 5000,
                 "medical_specialty": MEDICAL_SPECIALTIES.NEPHROLOGY,
             },
@@ -24,9 +25,10 @@ class Command(BaseCommand):
             try:
                 Doctor.objects.create(
                     name=doctor["name"],
+                    display_name=doctor["display_name"],
                     email=doctor["email"],
                     national_id=doctor["national_id"],
-                    mobile=doctor["mobile"],
+                    phone_number=doctor["phone_number"],
                     password=doctor["password"],
                     salary=doctor["salary"],
                     medical_specialty=doctor["medical_specialty"],

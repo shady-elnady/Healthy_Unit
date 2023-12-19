@@ -1,20 +1,26 @@
 from rest_framework.serializers import HyperlinkedModelSerializer, SerializerMethodField
 
+from User.api.Serializers.Profile_Serializer import ProfileSerializer
 from ..models import Doctor
 
 # Serializers define the API representation.
 
 
 class DoctorSerializer(HyperlinkedModelSerializer):
+    Profile = ProfileSerializer(many=False)
+
     class Meta:
         model = Doctor
         fields = [
             "url",
-            "id",
+            "uid",
             "name",
+            "display_name",
             "national_id",
             "email",
-            "mobile",
+            "phone_number",
+            "photo_url",
+            "Profile",
             "salary",
             "medical_specialty",
             "created_at",

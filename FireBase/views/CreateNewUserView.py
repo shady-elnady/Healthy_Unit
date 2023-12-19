@@ -6,7 +6,7 @@ from rest_framework.permissions import AllowAny
 import re
 
 from ..utils.authentication import FireBaseAdminAuth
-from ..utils.email_verfication_link import (
+from ..utils.password_reset_link import (
     generate_custom_email_from_firebase,
 )
 from Config.settings import pyrebase_auth

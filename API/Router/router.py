@@ -48,7 +48,7 @@ from ..api.ViewsSet import RegisterViewSet
 router = routers.DefaultRouter()
 
 # API
-router.register("register", RegisterViewSet, basename="register")
+# router.register("register", RegisterViewSet, basename="register")
 # Language
 router.register("languages", LanguageViewSet, basename="language")
 # Currency

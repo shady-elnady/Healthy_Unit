@@ -11,23 +11,26 @@ class Command(BaseCommand):
         users = [
             {
                 "name": "Shady El Nady",
+                "display_name": "Shady El Nady",
                 "email": "shadyelnady0@gmail.com",
                 "national_id": "22222222222222",
                 "phone_number": "+01022222222",
-                "password": "shady12345",
+                "password": "Shady@12345",
             },
             {
                 "name": "Shady El Nady1",
+                "display_name": "Shady El Nady1",
                 "email": "shadyelnady1@gmail.com",
                 "national_id": "33333333333333",
                 "phone_number": "+01022222223",
-                "password": "shady12345",
+                "password": "Shady@12345",
             },
         ]
         for user in users:
             try:
                 User.objects.create_user(
                     name=user["name"],
+                    display_name=user["display_name"],
                     email=user["email"],
                     national_id=user["national_id"],
                     phone_number=user["phone_number"],

@@ -10,16 +10,19 @@ class EmployeeSerializer(HyperlinkedModelSerializer):
         model = Employee
         fields = [
             "url",
-            "id",
+            "uid",
             "name",
+            "display_name",
             "national_id",
             "email",
-            "mobile",
+            "phone_number",
+            "photo_url",
+            "Profile",
             "salary",
             "created_at",
             "last_updated",
         ]
 
     extra_kwargs = {
-        "url": {"view_name": "employee-detail", "lookup_field": "id"},
+        "url": {"view_name": "employee-detail", "lookup_field": "uid"},
     }

@@ -4,7 +4,6 @@ from django.conf import settings
 from celery import shared_task
 from celery.utils.log import get_task_logger
 
-
 # celery logger
 logger = get_task_logger(__name__)
 
@@ -13,12 +12,29 @@ logger = get_task_logger(__name__)
 @shared_task()
 def generate_custom_password_link_from_firebase(user_email, display_name):
     action_code_settings = FireBaseAdminAuth.ActionCodeSettings(
-        url='https://www.yourwebsite.example/',
+        url="https://www.yourwebsite.example/",
         handle_code_in_app=True,
     )
-    custom_verification_link = FireBaseAdminAuth.generate_password_reset_link(user_email, action_code_settings)
-    subject = 'Reset your password'
-    message = f'Hello {display_name},\n\nPlease reset your password by clicking on the link below:\n\n{custom_verification_link}\n\nThanks,\nYour website team'
+    custom_verification_link = FireBaseAdminAuth.generate_password_reset_link(
+        user_email, action_code_settings
+    )
+    subject = "Reset your password"
+    message = f"Hello {display_name},\n\nPlease reset your password by clicking on the link below:\n\n{custom_verification_link}\n\nThanks,\nYour website team"
+    send_email(subject, message, user_email)
+
+
+# create custom email verification link using celery background task
+@shared_task()
+def generate_custom_email_from_firebase(user_email, display_name):
+    action_code_settings = FireBaseAdminAuth.ActionCodeSettings(
+        url="https://www.yourwebsite.example/",
+        handle_code_in_app=True,
+    )
+    custom_verification_link = FireBaseAdminAuth.generate_email_verification_link(
+        user_email, action_code_settings
+    )
+    subject = "Verify your email address"
+    message = f"Hello {display_name},\n\nPlease verify your email address by clicking on the link below:\n\n{custom_verification_link}\n\nThanks,\nYour website team"
     send_email(subject, message, user_email)
 
 

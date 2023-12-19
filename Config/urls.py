@@ -54,7 +54,7 @@ urlpatterns += i18n_patterns(
     # path("", include("django.contrib.auth.urls")), # include all auth views
     # path("", include("Logs.urls", namespace="Logs")),
     path("", include("User.urls", namespace="User")),
-    path("fire", include("FireBase.urls", namespace="FireBase")),
+    # path("fire", include("FireBase.urls", namespace="FireBase")),
     path(
         "corona_dashboard",
         include("CoronaDashboard.urls", namespace="CoronaDashboard"),
@@ -79,12 +79,12 @@ urlpatterns += i18n_patterns(
         name="schema-json",
     ),
     path(
-        f"api/{api_version}/swagger/",
+        f"swagger/{api_version}/swagger/",
         schema_view.with_ui("swagger", cache_timeout=0),
         name="schema-swagger-ui",
     ),
     path(
-        f"api/{api_version}/redoc/",
+        f"redoc/{api_version}/redoc/",
         schema_view.with_ui("redoc", cache_timeout=0),
         name="schema-redoc",
     ),

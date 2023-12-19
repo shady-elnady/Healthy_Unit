@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
-
-from Utils.entities.Value_Objects import UUID
+from uuid import UUID
 
 
 class AbstractFireBaseHelper(ABC):
@@ -39,5 +38,4 @@ class AbstractFireBaseHelper(ABC):
 
     @abstractmethod
     def logout(self, uid) -> bool:
-        """
-        """
+        """ """

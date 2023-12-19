@@ -4,7 +4,9 @@ import json
 
 from Utils.entities.Value_Objects import UUID
 from ..utils.authentication import FireBaseAdminAuth
-from FireBase.Controllers.Repository.Abstract_FireBase_Helper import AbstractFireBaseHelper
+from FireBase.Controllers.Repository.Abstract_FireBase_Helper import (
+    AbstractFireBaseHelper,
+)
 from User.models import User
 
 
@@ -13,15 +15,15 @@ class FireBaseAdminController(AbstractFireBaseHelper):
         self,
         uid: UUID = None,
         email: str = None,
-        mobile: str = None,
+        phone_number: str = None,
     ) -> "User":
         try:
             if uid:
                 return FireBaseAdminAuth.get_user(uid)
             elif email:
                 return FireBaseAdminAuth.get_user_by_email(email)
-            elif mobile:
-                return FireBaseAdminAuth.get_user_by_phone_number(mobile)
+            elif phone_number:
+                return FireBaseAdminAuth.get_user_by_phone_number(phone_number)
         except Exception:
             pass
 
@@ -29,14 +31,14 @@ class FireBaseAdminController(AbstractFireBaseHelper):
         self,
         uid1: UUID = None,
         email: str = None,
-        mobile: str = None,
+        phone_number: str = None,
     ) -> ["User"]:
         try:
             result = FireBaseAdminAuth.get_users(
                 [
                     FireBaseAdminAuth.UidIdentifier(uid1),
                     FireBaseAdminAuth.EmailIdentifier(email),
-                    FireBaseAdminAuth.PhoneIdentifier(mobile),
+                    FireBaseAdminAuth.PhoneIdentifier(phone_number),
                     FireBaseAdminAuth.ProviderIdentifier("google.com", "google_uid4"),
                 ]
             )

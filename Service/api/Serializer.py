@@ -1,7 +1,7 @@
 from rest_framework.serializers import HyperlinkedModelSerializer, SerializerMethodField
 
 from Employee.api.Serializer import EmployeeSerializer
-from User.api.Serializers.profile_serializer import ProfileSerializer
+from User.api.Serializers.Profile_Serializer import ProfileSerializer
 
 from ..models import Service, ParentService, ServiceRecord
 

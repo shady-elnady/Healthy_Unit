@@ -50,8 +50,15 @@ BASE_URL = env("BASE_URL")
 
 APPEND_SLASH = True
 
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ORIGIN_WHITELIST = environ.get("CORS_ORIGIN_WHITELIST", "").split(", ")
+CORS_ALLOW_ALL_ORIGINS = (
+    True  # If True, the whitelist will not be used and all origins will be accepted.
+)
+CORS_ORIGIN_WHITELIST = (
+    'google.com',
+    'hostname.example.com',
+    'localhost:8000',
+    '127.0.0.1:9000'
+)
 
 
 OTP_ATTEMPT_LIMIT = int(env("OTP_ATTEMPT_LIMIT"))
@@ -90,9 +97,9 @@ CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:5085",
 ]
 
-RENDER_EXTERNAL_HOSTNAME = env("RENDER_EXTERNAL_HOSTNAME")
-if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+# RENDER_EXTERNAL_HOSTNAME = env("RENDER_EXTERNAL_HOSTNAME")
+# if RENDER_EXTERNAL_HOSTNAME:
+#     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 
 CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
@@ -151,7 +158,7 @@ MY_APPS = [
     ##
     # "Logs",
     ##
-    "FireBase",
+    # "FireBase",
     ## API RestFrameWork & GraphQL
     "API",
     ## Corona Dashboard
@@ -207,6 +214,7 @@ SITE_ID = 1
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "corsheaders.middleware.CorsMiddleware",  # for corsheaders
     # "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",  # for Multi Languages & Translation
@@ -215,8 +223,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    # for corsheaders
-    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = "Config.urls"
@@ -276,38 +282,38 @@ DATABASES = {
 }
 
 
-"""FIREBASE CREDENTIALS"""
-FIREBASE_ACCOUNT_TYPE = env("FIREBASE_ACCOUNT_TYPE")
-FIREBASE_PROJECT_ID = env("FIREBASE_PROJECT_ID")
-FIREBASE_PRIVATE_KEY_ID = env("FIREBASE_PRIVATE_KEY_ID")
-FIREBASE_PRIVATE_KEY = env("FIREBASE_PRIVATE_KEY")
-FIREBASE_CLIENT_EMAIL = env("FIREBASE_CLIENT_EMAIL")
-FIREBASE_CLIENT_ID = env("FIREBASE_CLIENT_ID")
-FIREBASE_AUTH_URI = env("FIREBASE_AUTH_URI")
-FIREBASE_TOKEN_URI = env("FIREBASE_TOKEN_URI")
-FIREBASE_AUTH_PROVIDER_X509_CERT_URL = env("FIREBASE_AUTH_PROVIDER_X509_CERT_URL")
-FIREBASE_CLIENT_X509_CERT_URL = env("FIREBASE_CLIENT_X509_CERT_URL")
-FIREBASE_WEB_API_KEY = env("FIREBASE_WEB_API_KEY")
-REST_API_URL = env("REST_API_URL")
-#
-# Firebase settings
-try:
-    config = {
-        "apiKey": env("FIREBASE_API_KEY"),
-        "authDomain": env("FIREBASE_AUTH_DOMAIN"),
-        "databaseURL": env("FIREBASE_DATABASE_URL"),
-        "storageBucket": env("FIREBASE_STORAGE_BUCKET"),
-        "projectId": env("FIREBASE_PROJECT_ID"),
-        "messagingSenderId": env("FIREBASE_MESSAGING_SENDER_ID"),
-        "appId": env("FIREBASE_APP_ID"),
-        "measurementId": env("FIREBASE_MEASUREMENT_ID"),
-    }
-    firebase = pyrebase.initialize_app(config)
-    pyrebase_auth = firebase.auth()
-except Exception:
-    raise Exception(
-        "Firebase configuration credentials not found. Please add the configuration to the environment variables."
-    )
+# """FIREBASE CREDENTIALS"""
+# FIREBASE_ACCOUNT_TYPE = env("FIREBASE_ACCOUNT_TYPE")
+# FIREBASE_PROJECT_ID = env("FIREBASE_PROJECT_ID")
+# FIREBASE_PRIVATE_KEY_ID = env("FIREBASE_PRIVATE_KEY_ID")
+# FIREBASE_PRIVATE_KEY = env("FIREBASE_PRIVATE_KEY")
+# FIREBASE_CLIENT_EMAIL = env("FIREBASE_CLIENT_EMAIL")
+# FIREBASE_CLIENT_ID = env("FIREBASE_CLIENT_ID")
+# FIREBASE_AUTH_URI = env("FIREBASE_AUTH_URI")
+# FIREBASE_TOKEN_URI = env("FIREBASE_TOKEN_URI")
+# FIREBASE_AUTH_PROVIDER_X509_CERT_URL = env("FIREBASE_AUTH_PROVIDER_X509_CERT_URL")
+# FIREBASE_CLIENT_X509_CERT_URL = env("FIREBASE_CLIENT_X509_CERT_URL")
+# FIREBASE_WEB_API_KEY = env("FIREBASE_WEB_API_KEY")
+# REST_API_URL = env("REST_API_URL")
+# #
+# # Firebase settings
+# try:
+#     config = {
+#         "apiKey": env("FIREBASE_API_KEY"),
+#         "authDomain": env("FIREBASE_AUTH_DOMAIN"),
+#         "databaseURL": env("FIREBASE_DATABASE_URL"),
+#         "storageBucket": env("FIREBASE_STORAGE_BUCKET"),
+#         "projectId": env("FIREBASE_PROJECT_ID"),
+#         "messagingSenderId": env("FIREBASE_MESSAGING_SENDER_ID"),
+#         "appId": env("FIREBASE_APP_ID"),
+#         "measurementId": env("FIREBASE_MEASUREMENT_ID"),
+#     }
+#     firebase = pyrebase.initialize_app(config)
+#     pyrebase_auth = firebase.auth()
+# except Exception:
+#     raise Exception(
+#         "Firebase configuration credentials not found. Please add the configuration to the environment variables."
+#     )
 
 
 # Password validation
@@ -464,7 +470,7 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.BasicAuthentication",
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
-        "FireBase.utils.authentication.FirebaseAuthentication",  # Custom fireBase Authentiction
+        # "FireBase.utils.authentication.FirebaseAuthentication",  # Custom fireBase Authentiction
     ],
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 2,
@@ -532,7 +538,7 @@ CORS_ALLOW_HEADERS = [
     "Content-Type",
     "Authorization",
 ]
-CORS_ALLOW_CREDENTIALS = True
+# CORS_ALLOW_CREDENTIALS = True
 
 # celery settings
 CELERY_BROKER_URL = env("CELERY_BROKER_URL")

@@ -25,9 +25,12 @@ class BaseChildAdmin(CachedMixin, PolymorphicMPTTChildModelAdmin):
             "fields": (
                 "parent",
                 "name",
+                "display_name",
                 "national_id",
                 "email",
-                "mobile",
+                "phone_number",
+                "photo_url",
+                # "Profile",
             ),
         },
     )
@@ -86,7 +89,7 @@ class UserAdmin(CachedMixin, PolymorphicMPTTParentModelAdmin):
         "name",
         "national_id",
         "email",
-        "mobile",
+        "phone_number",
         "actions_column",
     )
     inlines = (ProfileInline,)

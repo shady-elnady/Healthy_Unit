@@ -18,7 +18,7 @@ class UserOTP(BaseModel):
     user = ForeignKey(
         User,
         on_delete=CASCADE,
-        related_name="Profile",
+        related_name="User_OTP",
         verbose_name=_("User"),
     )
     otp = CharField(

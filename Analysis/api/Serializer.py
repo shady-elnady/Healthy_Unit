@@ -1,8 +1,6 @@
 from rest_framework.serializers import HyperlinkedModelSerializer, SerializerMethodField
 
-from User.api.Serializers.profile_serializer import ProfileSerializer
-
-from ..models import Analysis, Report
+from Analysis.models import Analysis, Report
 
 # Serializers define the API representation.
 

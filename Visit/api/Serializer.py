@@ -1,7 +1,7 @@
 from rest_framework.serializers import HyperlinkedModelSerializer, SerializerMethodField
 
 from Doctor.api.Serializer import DoctorSerializer
-from User.api.Serializers.profile_serializer import ProfileSerializer
+from User.api.Serializers.Profile_Serializer import ProfileSerializer
 from VitalSign.api.Serializer import VitalSignSerializer
 
 from ..models import Visit, VisitVitalSign

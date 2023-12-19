@@ -27,12 +27,14 @@ class DoctorViewSet(ModelViewSet):
         filters.SearchFilter,  # http://example.com/api/users?search=russell
         django_filters.rest_framework.DjangoFilterBackend,
     )
-    ordering_fields = ("id", "created_at", "last_updated")
-    filterset_fields = ["id", "created_at", "last_updated"]
+    ordering_fields = ("uid", "created_at", "last_updated")
+    filterset_fields = ["uid", "created_at", "last_updated"]
     search_fields = [
+        "name",
+        "display_name",
         "national_id",
         "email",
-        "mobile",
+        "phone_number",
         "salary",
         "medical_specialty",
     ]

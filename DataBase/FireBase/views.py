@@ -94,14 +94,3 @@ def read_from_firestroe(request):
 ## Example (same directory, same file name)
 # storage.child("images/example.jpg").put("example.jpg")
 
-
-# def main(request):
-#     if request.method == 'POST':
-#         file = request.FILES['file']
-#         file_save = default_storage.save(file.name, file)
-#         storage.child("files/" + file.name).put("media/" + file.name)
-#         delete = default_storage.delete(file.name)
-#         messages.success(request, "File upload in Firebase Storage successful")
-#         return redirect('main')
-#     else:
-#         return render(request, 'main.html')

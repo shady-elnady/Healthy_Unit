@@ -27,13 +27,13 @@ class EmployeeViewSet(ModelViewSet):
         filters.SearchFilter,  # http://example.com/api/users?search=russell
         django_filters.rest_framework.DjangoFilterBackend,
     )
-    ordering_fields = ("id", "created_at", "last_updated")
-    filterset_fields = ["id", "created_at", "last_updated"]
+    ordering_fields = ("uid", "created_at", "last_updated")
+    filterset_fields = ["uid", "created_at", "last_updated"]
     search_fields = [
         "name",
         "national_id",
         "email",
-        "mobile",
+        "phone_number",
         "salary",
     ]
     # This will be used as the default ordering
